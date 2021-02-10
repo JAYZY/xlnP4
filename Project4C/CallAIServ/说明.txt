@@ -1,0 +1,6 @@
+该文件夹下为基于zeromq库开发的，可以控制ubuntu系统下我方算法模块的库
+分为两部分：
+1.参数文件：cfg.txt，其中的信息：
+其中[ubuntu_server]为我方linux系统的信息，包含ip地址和端口；[debug_mode]为debug模式，true状况：会输出很多信息；false：输出信息会变少，主要方便调试用
+
+2. 库相关的软件包，控制算法模块的，由我方编译后的库为zmqDLL.dll。另外，libzmq 为zmq官方库，其为我方开发所依赖的库。

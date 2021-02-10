@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<BaseData>
+  <DataA name="发现方式">
+    <InfoA ID="0" Name="智能分析"/>
+    <InfoA ID="1" Name="人工分析"/>
+    <InfoA ID="2" Name="零部件分析"/>
+  </DataA>
+
+  <DataB name="部件类型">
+    <InfoB UnitID="6" Name="支持装置" Code="ZZ" ParentID="0" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7" Name="定位装置" Code="DW" ParentID="0" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="8" Name="接触悬挂" Code="JC" ParentID="0" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="4" Name="附加悬挂" Code="FJ" ParentID="0" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="401" Name="绝缘子" Code="FJ-JYZ" ParentID="4" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="601" Name="平腕臂管" Code="ZC-PWBG" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="602" Name="斜腕臂管" Code="ZC-XWBG" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="603" Name="平腕臂绝缘子" Code="ZC-PWBJYZ" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="604" Name="斜腕臂绝缘子" Code="ZC-XWBJYZ" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="605" Name="腕臂支撑" Code="ZC-WBZC" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="606" Name="斜拉线" Code="ZC-XLX" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="607" Name="套管座" Code="ZC-TGZ" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="608" Name="承力索座" Code="ZC-CLSZ" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="609" Name="套管环" Code="ZC-TGH" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="610" Name="腕臂底座" Code="ZC-WBDZ" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="611" Name="腕臂及支撑" Code="ZC-WBJZC" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="612" Name="套管铰环" Code="ZC-TGJH" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="613" Name="吊柱底座" Code="ZC-DZDZ" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="614" Name="吊柱斜撑底座" Code="ZC-DZXCDZ" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="615" Name="铁锚压板" Code="ZC-TMYB" ParentID="6" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="701" Name="定位管" Code="DW-DWG" ParentID="7" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="702" Name="定位管支撑" Code="DW-DWGZC" ParentID="7" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="703" Name="防风拉线" Code="DW-FFLX" ParentID="7" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="704" Name="定位器" Code="DW-DWQ" ParentID="7" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="705" Name="定位支座" Code="DW-DWZZ" ParentID="7" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="706" Name="定位环" Code="DW-DWH" ParentID="7" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="707" Name="定位线夹" Code="DW-DWXJ" ParentID="7" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="708" Name="支持器" Code="DW-ZCQ" ParentID="7" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="709" Name="定位管双耳套筒" Code="DW-DWGSETT" ParentID="7" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="710" Name="定位管支撑双耳套筒斜腕臂侧" Code="DW-DWGZCXWBC" ParentID="7" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="711" Name="定位管支撑双耳套筒定位管侧" Code="DW-DWGZCDWGC" ParentID="7" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="712" Name="套管单耳斜腕臂侧" Code="DW-TGDEXWBC" ParentID="7" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="713" Name="套管单耳定位管侧" Code="DW-TGDEDWGC" ParentID="7" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="801" Name="接触线" Code="JC-JCX" ParentID="8" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="802" Name="承力索" Code="JC-CLS" ParentID="8" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="803" Name="承力索保护条、套" Code="JC-CLSBHT" ParentID="8" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="804" Name="德系_吊弦承力索线夹" Code="JC-DXDXCLSXJ" ParentID="8" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="805" Name="德系_吊弦线" Code="JC-DXDXX" ParentID="8" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="806" Name="德系_吊弦接触线线夹" Code="JC-DXDXJCXXJ" ParentID="8" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="807" Name="日系_吊弦承力索线夹" Code="JC-RXDXCLSXJ" ParentID="8" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="808" Name="日系_吊弦线" Code="JC-RXDXX" ParentID="8" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="809" Name="日系_吊弦接触线线夹" Code="JC-RXJCXXJ" ParentID="8" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="810" Name="悬挂" Code="JC-XG" ParentID="8" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="811" Name="吊弦" Code="JC-DX" ParentID="8" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60101" Name="管帽" Code="ZC-PWBG-GM" ParentID="601" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60102" Name="防尘塞" Code="ZC-PWBG-FCS" ParentID="601" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60201" Name="管帽" Code="ZC-XWBG-GM" ParentID="602" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60202" Name="固定板" Code="ZC-XWBG-GDB" ParentID="602" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60301" Name="U型抱箍" Code="ZC-PWBJYZ-U" ParentID="603" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60302" Name="绝缘子" Code="ZC-PWBJYZ-JYZ" ParentID="603" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60401" Name="U型抱箍" Code="ZC-XWBJYZ-U" ParentID="604" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60402" Name="绝缘子" Code="ZC-XWBJYZ-JYZ" ParentID="604" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60501" Name="上端套筒" Code="ZC-WBZC-SDTT" ParentID="605" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60502" Name="下端套筒" Code="ZC-WBZC-XDTT" ParentID="605" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60601" Name="定位钩" Code="ZC-XLX-DWG" ParentID="606" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60602" Name="套管单耳" Code="ZC-XLX-TGDE" ParentID="606" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60701" Name="顶紧螺栓" Code="ZC-TGZ-DJLS" ParentID="607" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60702" Name="螺栓" Code="ZC-TGZ-LS" ParentID="607" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60703" Name="开口销" Code="ZC-TGZ-KKX" ParentID="607" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60801" Name="定位钩" Code="ZC-CLSZ-DWG" ParentID="608" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60802" Name="开口销" Code="ZC-CLSZ-KKX" ParentID="608" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60803" Name="平衡线" Code="ZC-CLSZ-PHX" ParentID="608" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="60804" Name="顶紧螺栓" Code="ZC-CLSZ-DJLS" ParentID="608" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="61001" Name="平腕臂底座" Code="ZC-WBDZ-PWBDZ" ParentID="610" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="61002" Name="斜腕臂底座" Code="ZC-WBDZ-XWBDZ" ParentID="610" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="61101" Name="平腕臂套管单耳" Code="ZC-WBJZC-PWBTGDE" ParentID="611" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="61102" Name="斜腕臂套管单耳" Code="ZC-WBJZC-XWBDE" ParentID="611" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="61103" Name="平腕臂套管双耳" Code="ZC-WBJZC-PWBTGSE" ParentID="611" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="61104" Name="斜腕臂套管双耳" Code="ZC-WBJZC-XWBSE" ParentID="611" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="61105" Name="平腕臂双耳套筒" Code="ZC-WBJZC-PWBSETT" ParentID="611" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="61106" Name="斜腕臂双耳套筒" Code="ZC-WBJZC-XWBSETT" ParentID="611" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="61201" Name="螺栓" Code="ZC-TGJH-LS" ParentID="612" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="61202" Name="开口销" Code="ZC-TGJH-KKX" ParentID="612" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="61301" Name="螺栓" Code="ZC-DZDZ-LS" ParentID="613" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="61401" Name="螺栓" Code="ZC-DZXCDZ-LS" ParentID="614" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="61501" Name="平腕臂铁锚压板" Code="ZC-TMYB-PTMYB" ParentID="615" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="61502" Name="斜腕臂铁锚压板" Code="ZC-TMYB-XTMYB" ParentID="615" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70101" Name="上端卡子" Code="DW-DWG-SDKZ" ParentID="701" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70102" Name="下端卡子" Code="DW-DWG-XDKZ" ParentID="701" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70103" Name="管帽" Code="DW-DWG-GM" ParentID="701" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70104" Name="旋转双耳" Code="DW-DWG-XZSE" ParentID="701" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70201" Name="上端套筒" Code="DW-DWGZC-SDTT" ParentID="702" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70202" Name="下端套筒" Code="DW-DWGZC-XDTT" ParentID="702" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70203" Name="斜腕臂侧套管单耳" Code="DW-DWGZC-XWBCDE" ParentID="702" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70204" Name="定位管侧套管单耳" Code="DW-DWGZC-DWGCDE" ParentID="702" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70301" Name="固定环" Code="DW-FFLX-GDH" ParentID="703" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70401" Name="开口销" Code="DW-DWQ-KKX" ParentID="704" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70402" Name="螺栓" Code="DW-DWQ-LS" ParentID="704" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70501" Name="等电位线" Code="DW-DWZZ-DDWX" ParentID="705" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70502" Name="开口销" Code="DW-DWZZ-KKX" ParentID="705" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70503" Name="定位线夹" Code="DW-DWZZ-DWXJ" ParentID="705" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70504" Name="圆头螺栓" Code="DW-DWZZ-YTLS" ParentID="705" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70505" Name="螺栓" Code="DW-DWZZ-LS" ParentID="705" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70506" Name="套管双耳" Code="DW-DWZZ-TGSE" ParentID="705" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70601" Name="销钉开口销" Code="DW-DWH-XDKKX" ParentID="706" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70602" Name="螺栓" Code="DW-DWH-LS" ParentID="706" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70603" Name="止松垫片" Code="DW-DWH-ZSDP" ParentID="706" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70604" Name="套管单耳" Code="DW-DWH-TGDE" ParentID="706" DelFlag="1" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70605" Name="套管双耳" Code="DW-DWH-TGSE" ParentID="706" DelFlag="2" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70701" Name="螺栓" Code="DW-DWXJ-LS" ParentID="707" DelFlag="3" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70801" Name="开口销" Code="DW-ZCQ-KKX" ParentID="708" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70802" Name="螺栓" Code="DW-ZCQ-LS" ParentID="708" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70901" Name="顶丝" Code="DW-DWGSETT-DS" ParentID="709" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="70902" Name="备母" Code="DW-DWGSETT-BM" ParentID="709" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="71001" Name="顶丝" Code="DW-DWGZCXWBC-DS" ParentID="710" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="71002" Name="备母" Code="DW-DWGZCXWBC-BM" ParentID="710" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="71101" Name="顶丝" Code="DW-DWGZCDWGC-DS" ParentID="711" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="71102" Name="备母" Code="DW-DWGZCDWGC-BM" ParentID="711" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="80101" Name="吊弦线夹" Code="JC-JCX-DXXJ" ParentID="801" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="80201" Name="吊弦线夹" Code="JC-CLS-DXXJ" ParentID="802" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="81001" Name="鞍子" Code="JC-XG-AZ" ParentID="810" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="81002" Name="悬吊滑轮" Code="JC-XG-XDHL" ParentID="810" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="81003" Name="吊弦线夹" Code="JC-XG-DXXJ" ParentID="810" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="81004" Name="定位环线夹" Code="JC-XG-DWHXJ" ParentID="810" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6020201" Name="开口销" Code="ZC-XWBG-GDB-KKX" ParentID="60202" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6030101" Name="开口销" Code="ZC-PWBJYZ-U-KKX" ParentID="60301" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6030102" Name="备母" Code="ZC-PWBJYZ-U-BM" ParentID="60301" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6040101" Name="备母" Code="ZC-XWBJYZ-U-BM" ParentID="60401" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6050101" Name="顶紧螺栓" Code="ZC-WBZC-SDTT-DJLS" ParentID="60501" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6050102" Name="开口销" Code="ZC-WBZC-SDTT-KKX" ParentID="60501" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6050103" Name="止松垫片" Code="ZC-WBZC-SDTT-ZSDP" ParentID="60501" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6050104" Name="螺栓" Code="ZC-WBZC-SDTT-LS" ParentID="60501" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6050201" Name="顶紧螺栓" Code="ZC-WBZC-XDTT-DJLS" ParentID="60502" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6050202" Name="开口销" Code="ZC-WBZC-XDTT-KKX" ParentID="60502" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6050203" Name="止松垫片" Code="ZC-WBZC-XDTT-ZSDP" ParentID="60502" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6050204" Name="螺栓" Code="ZC-WBZC-XDTT-LS" ParentID="60502" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6060101" Name="止松垫片" Code="ZC-XLX-DWG-ZSDP" ParentID="60601" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6060102" Name="螺栓" Code="ZC-XLX-DWG-LS" ParentID="60601" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6060103" Name="止松垫片" Code="ZC-XLX-TGDE-ZSDP" ParentID="60601" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6060104" Name="螺栓" Code="ZC-XLX-TGDE-LS" ParentID="60601" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6060105" Name="开口销" Code="ZC-XLX-TGDE-KKX" ParentID="60601" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6100101" Name="螺栓" Code="ZC-WBDZ-PWBDZ-LS" ParentID="61001" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6100102" Name="备母" Code="ZC-WBDZ-PWBDZ-BM" ParentID="61001" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6100103" Name="横向开口销" Code="ZC-WBDZ-PWBDZ-KKX" ParentID="61001" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6100104" Name="竖向开口销" Code="ZC-WBDZ-PWBDZ-SXKKX" ParentID="61001" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6100105" Name="销钉" Code="ZC-WBDZ-PWBDZ-XD" ParentID="61001" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6100201" Name="螺栓" Code="ZC-WBDZ-XWBDZ-LS" ParentID="61002" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6100202" Name="备母" Code="ZC-WBDZ-XWBDZ-BM" ParentID="61002" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6100203" Name="横向开口销" Code="ZC-WBDZ-XWBDZ-KKX" ParentID="61002" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6100204" Name="竖向开口销" Code="ZC-WBDZ-XWBDZ-SXKKX" ParentID="61002" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6100205" Name="销钉" Code="ZC-WBDZ-XWBDZ-XD" ParentID="61002" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6110101" Name="止松垫片" Code="ZC-WBJZC-PWBTGDE-ZSDP" ParentID="6110101" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6110102" Name="开口销" Code="ZC-WBJZC-PWBTGDE-KKX" ParentID="6110102" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6110103" Name="螺栓" Code="ZC-WBJZC-PWBTGDE-LS" ParentID="6110103" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6110201" Name="止松垫片" Code="ZC-WBJZC-XWBTGDE-ZSDP" ParentID="61102" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6110202" Name="开口销" Code="ZC-WBJZC-XWBTGDE-KKX" ParentID="61102" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6110203" Name="螺栓" Code="ZC-WBJZC-XWBTGDE-LS" ParentID="61102" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6110301" Name="止松垫片" Code="ZC-WBJZC-PWBTGSE-ZSDP" ParentID="61103" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6110302" Name="开口销" Code="ZC-WBJZC-PWBTGSE-KKX" ParentID="61103" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6110303" Name="螺栓" Code="ZC-WBJZC-PWBTGSE-LS" ParentID="61103" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6110401" Name="止松垫片" Code="ZC-WBJZC-XWBTGSE-ZSDP" ParentID="61104" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6110402" Name="开口销" Code="ZC-WBJZC-XWBTGSE-KKX" ParentID="61104" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="6110403" Name="螺栓" Code="ZC-WBJZC-XWBTGSE-LS" ParentID="61104" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7010101" Name="开口销" Code="DW-DWG-SDKZ-KKX" ParentID="70101" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7010201" Name="开口销" Code="DW-DWG-XDKZ-KKX" ParentID="70102" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7010401" Name="横向开口销" Code="DW-DWG-XZSE-HXKKX" ParentID="70104" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7010402" Name="竖向开口销" Code="DW-DWG-XZSE-SXKKX" ParentID="70104" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7020101" Name="顶紧螺栓" Code="DW-DWGZC-SDTT-DJLS" ParentID="70201" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7020102" Name="开口销" Code="DW-DWGZC-SDTT-KKX" ParentID="70201" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7020103" Name="止松垫片" Code="DW-DWGZC-SDTT-ZSDP" ParentID="70201" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7020104" Name="螺栓" Code="DW-DWGZC-SDTT-LS" ParentID="70201" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7020201" Name="顶紧螺栓" Code="DW-DWGZC-XDTT-DJLS" ParentID="70202" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7020202" Name="开口销" Code="DW-DWGZC-XDTT-KKX" ParentID="70202" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7020203" Name="止松垫片" Code="DW-DWGZC-XDTT-ZSDP" ParentID="70202" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7020204" Name="螺栓" Code="DW-DWGZC-XDTT-LS" ParentID="70202" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7020301" Name="开口销" Code="DW-DWGZC-XWBCDE-KKX" ParentID="70203" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7020302" Name="止松垫片" Code="DW-DWGZC-XWBCDE-ZSDP" ParentID="70203" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7020303" Name="螺栓" Code="DW-DWGZC-XWBCDE-LS" ParentID="70203" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7020401" Name="开口销" Code="DW-DWGZC-DWGCDE-KKX" ParentID="70204" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7020402" Name="止松垫片" Code="DW-DWGZC-DWGCDE-ZSDP" ParentID="70204" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7020403" Name="螺栓" Code="DW-DWGZC-DWGCDE-LS" ParentID="70204" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7030101" Name="止松垫片" Code="DW-FFLX-GDH-ZSDP" ParentID="70301" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7030102" Name="螺栓" Code="DW-FFLX-GDH-LS" ParentID="70301" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7050101" Name="开口销" Code="DW-DWZZ-DDWX-KKX" ParentID="70501" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7050301" Name="螺栓" Code="DW-DWZZ-DWXJ-LS" ParentID="70503" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7050401" Name="开口销" Code="DW-DWZZ-YTLS-KKX" ParentID="70504" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7050601" Name="螺栓" Code="DW-DWZZ-TGSE-LS" ParentID="70506" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7060401" Name="螺栓" Code="DW-DWH-TGDE-LS" ParentID="70604" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="7060501" Name="螺栓" Code="DW-DWH-TGSE-LS" ParentID="70605" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+    <InfoB UnitID="8010101" Name="螺栓" Code="JC-JCX-DXXJ-LS" ParentID="80101" DelFlag="0" Memo="1" AddWidth="100" AddHeight="100" />
+  </DataB>
+  <Data name="缺陷类型">
+    <Info FaultID="1" Name="参数异常" Code="CS" ParentID="0" DelFlag="0" Memo="" />
+    <Info FaultID="101" Name="一级缺陷" Code="CS-FI" ParentID="1" DelFlag="0" Memo="" />
+    <Info FaultID="102" Name="二级缺陷" Code="CS-SE" ParentID="1" DelFlag="0" Memo="" />
+    <Info FaultID="2" Name="状态异常" Code="ZT" ParentID="0" DelFlag="0" Memo="" />
+    <Info FaultID="201" Name="松动" Code="ZT-SD" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="202" Name="脱落" Code="ZT-TL" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="203" Name="卡滞" Code="ZT-KZ" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="204" Name="偏磨" Code="ZT-PM" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="205" Name="断裂" Code="ZT-DL" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="206" Name="烧蚀" Code="ZT-SZ" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="207" Name="锈蚀" Code="ZT-XZ" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="208" Name="线索断线" Code="ZT-XSDX" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="209" Name="支柱倾斜、倒伏" Code="ZT-ZZQX" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="210" Name="绝缘闪络击穿" Code="ZT-JYSJ" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="211" Name="电气距离不足" Code="ZT-DQJLBZ" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="212" Name="安装、装配缺陷" Code="ZT-AZQX" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="213" Name="接地及回流不良" Code="ZT-JDBL" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="214" Name="原因不明" Code="ZT-YYBM" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="215" Name="其它" Code="ZT-QT" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="216" Name="缺失" Code="ZT-QS" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="217" Name="破损" Code="ZT-PS" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="218" Name="污浊" Code="ZT-WZ" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="219" Name="松脱" Code="ZT-ST" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="220" Name="断股" Code="ZT-DG" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="221" Name="开裂" Code="ZT-KL" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="222" Name="未掰" Code="ZT-WB" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="223" Name="散股" Code="ZT-SG" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="224" Name="不受力" Code="ZT-BSL" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="225" Name="装反" Code="ZT-ZF" ParentID="2" DelFlag="0" Memo="" />
+    <Info FaultID="3" Name="外部原因" Code="WY" ParentID="0" DelFlag="0" Memo="" />
+    <Info FaultID="301" Name="异物" Code="WY-YW" ParentID="3" DelFlag="0" Memo="" />
+    <Info FaultID="302" Name="树木" Code="WY-SM" ParentID="3" DelFlag="0" Memo="" />
+    <Info FaultID="303" Name="鸟害" Code="WY-NH" ParentID="3" DelFlag="0" Memo="" />
+    <Info FaultID="304" Name="雷击" Code="WY-LJ" ParentID="3" DelFlag="0" Memo="" />
+    <Info FaultID="305" Name="污（雾）闪" Code="WY-WS" ParentID="3" DelFlag="0" Memo="" />
+    <Info FaultID="306" Name="水害影响" Code="WY-SH" ParentID="3" DelFlag="0" Memo="" />
+    <Info FaultID="307" Name="冰雪灾害" Code="WY-BXH" ParentID="3" DelFlag="0" Memo="" />
+    <Info FaultID="308" Name="上跨线搭网" Code="WY-SKXDW" ParentID="3" DelFlag="0" Memo="" />
+    <Info FaultID="309" Name="上跨桥落物搭网" Code="WY-SKQLWDW" ParentID="3" DelFlag="0" Memo="" />
+    <Info FaultID="310" Name="外部电源故障" Code="WY-WDYGZ" ParentID="3" DelFlag="0" Memo="" />
+    <Info FaultID="311" Name="外部施工影响" Code="WY-WSGYX" ParentID="3" DelFlag="0" Memo="" />
+    <Info FaultID="312" Name="交通肇事" Code="WY-JTZS" ParentID="3" DelFlag="0" Memo="" />
+    <Info FaultID="313" Name="隧道缺陷影响" Code="WY-SDQX" ParentID="3" DelFlag="0" Memo="" />
+    <Info FaultID="314" Name="其它" Code="WY-QT" ParentID="3" DelFlag="0" Memo="" />
+  </Data>
+</BaseData>

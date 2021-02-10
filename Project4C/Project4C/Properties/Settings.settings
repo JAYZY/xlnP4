@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Project4C.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="lastDbDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="palyRate" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="ServIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="LogPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ViewMode" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="MDB" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mainDb</Value>
+    </Setting>
+    <Setting Name="dbPwd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">jsXnl</Value>
+    </Setting>
+    <Setting Name="security" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Js028xNl</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

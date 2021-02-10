@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{16C143DC-8C88-4C39-B984-BF6F3D9632EF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Project4C</RootNamespace>
+    <AssemblyName>Project4C</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>train_72px_1118847_easyicon.net.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Project4C.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar.Charts, Version=12.7.0.10, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\DevComponents.DotNetBar.Charts.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar.Layout, Version=12.7.0.10, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\DevComponents.DotNetBar.Layout.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=12.7.0.10, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="fvalgcli, Version=3.0.0.0, Culture=neutral, PublicKeyToken=20bef69103785603, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\FAST\WIL\3.0.0\dll.v4.5\x64\fvalgcli.dll</HintPath>
+    </Reference>
+    <Reference Include="FVILbasic, Version=3.0.0.0, Culture=neutral, PublicKeyToken=6b92ad76edadb73c, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\FAST\WIL\3.0.0\dll.v4.5\x64\FVILbasic.dll</HintPath>
+    </Reference>
+    <Reference Include="FVILdevice, Version=3.0.0.0, Culture=neutral, PublicKeyToken=46550952301e8a49, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\FAST\WIL\3.0.0\dll.v4.5\x64\FVILdevice.dll</HintPath>
+    </Reference>
+    <Reference Include="FVILforms, Version=3.0.0.0, Culture=neutral, PublicKeyToken=2b3e48e63fd7f1a8, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\FAST\WIL\3.0.0\dll.v4.5\x64\FVILforms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Designer">
+      <HintPath>dll\sqlite-netFx45-binary-x64-2012-1.0.112.0\SQLite.Designer.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis">
+      <HintPath>..\packages\StackExchange.Redis.1.2.1\lib\net40\StackExchange.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.112.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=AMD64">
+      <HintPath>..\packages\System.Data.SQLite.x64.1.0.112.0\lib\net45\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.112.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.112.0\lib\net45\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.112.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.112.0\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Tasks, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChildFrm\FrmDBMgr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildFrm\FrmDBMgr.Designer.cs">
+      <DependentUpon>FrmDBMgr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="config\ConfigInfo.cs" />
+    <Compile Include="config\PicInfo.cs" />
+    <Compile Include="Core\Crypto.cs" />
+    <Compile Include="Core\FaultInfo.cs" />
+    <Compile Include="Core\FigureHandingOverlay.cs" />
+    <Compile Include="Core\JpgCompress.cs" />
+    <Compile Include="Core\Math.cs" />
+    <Compile Include="Core\OffLineOp.cs" />
+    <Compile Include="Core\PicInfo.cs" />
+    <Compile Include="Core\StationInfo.cs" />
+    <Compile Include="Core\UnitPos.cs" />
+    <Compile Include="Ctrl\CtrlPicShow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\CtrlPicShow.Designer.cs">
+      <DependentUpon>CtrlPicShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctrl\CtrlDataAnalyse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctrl\CtrlDataAnalyse.Designer.cs">
+      <DependentUpon>CtrlDataAnalyse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CtrlReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CtrlReport.Designer.cs">
+      <DependentUpon>CtrlReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DB\RedisHelpler.cs" />
+    <Compile Include="DB\SqliteHelper.cs" />
+    <Compile Include="FileOp\FileHelper.cs" />
+    <Compile Include="FileOp\JsonHelper.cs" />
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmParent.Designer.cs">
+      <DependentUpon>FrmParent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\DialogFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DialogFilter.Designer.cs">
+      <DependentUpon>DialogFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogTaskTip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DialogTaskTip.Designer.cs">
+      <DependentUpon>DialogTaskTip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmDBManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmDBManage.Designer.cs">
+      <DependentUpon>FrmDBManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmFault.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmFault.Designer.cs">
+      <DependentUpon>FrmFault.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmGoPoleNum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmGoPoleNum.Designer.cs">
+      <DependentUpon>FrmGoPoleNum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmImportImg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmImportImg.Designer.cs">
+      <DependentUpon>FrmImportImg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmOffLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\FrmOffLine.Designer.cs">
+      <DependentUpon>FrmOffLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmOnline.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmOnline.Designer.cs">
+      <DependentUpon>FrmOnline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmSet.Designer.cs">
+      <DependentUpon>FrmSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmSetPwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmSetPwd.Designer.cs">
+      <DependentUpon>FrmSetPwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmTaskMgr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmTaskMgr.Designer.cs">
+      <DependentUpon>FrmTaskMgr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmUserMgr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmUserMgr.designer.cs">
+      <DependentUpon>FrmUserMgr.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ChildFrm\FrmDBMgr.resx">
+      <DependentUpon>FrmDBMgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\CtrlPicShow.resx">
+      <DependentUpon>CtrlPicShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctrl\CtrlDataAnalyse.resx">
+      <DependentUpon>CtrlDataAnalyse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CtrlReport.resx">
+      <DependentUpon>CtrlReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmParent.resx">
+      <DependentUpon>FrmParent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UI\DialogFilter.resx">
+      <DependentUpon>DialogFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogTaskTip.resx">
+      <DependentUpon>DialogTaskTip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmDBManage.resx">
+      <DependentUpon>FrmDBManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmFault.resx">
+      <DependentUpon>FrmFault.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmGoPoleNum.resx">
+      <DependentUpon>FrmGoPoleNum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmImportImg.resx">
+      <DependentUpon>FrmImportImg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmOffLine.resx">
+      <DependentUpon>FrmOffLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmOnline.resx">
+      <DependentUpon>FrmOnline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmSet.resx">
+      <DependentUpon>FrmSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmSetPwd.resx">
+      <DependentUpon>FrmSetPwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmTaskMgr.resx">
+      <DependentUpon>FrmTaskMgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmUserMgr.resx">
+      <DependentUpon>FrmUserMgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\northwindEF.db" />
+    <None Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\System.Data.SQLite.dll.config" />
+    <None Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\test.exe.config" />
+    <None Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\testef6.exe.config" />
+    <None Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\testlinq.exe.config" />
+    <None Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\northwindEF.db" />
+    <None Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\System.Data.SQLite.dll.config" />
+    <None Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\test.exe.config" />
+    <None Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\testef6.exe.config" />
+    <None Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\testlinq.exe.config" />
+    <Fakes Include="Fakes\Newtonsoft.Json.fakes" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="config\BaseData.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DB\TextFile1.sql" />
+    <Content Include="config\需要解决的问题.txt" />
+    <Content Include="DevComponents.DotNetBar.Charts.dll" />
+    <Content Include="DevComponents.DotNetBar2.dll" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\Installer.exe" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\Installer.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\SQLite.Designer.dll" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\SQLite.Designer.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\SQLite.Designer.xml" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\System.Data.SQLite.dll" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\System.Data.SQLite.EF6.dll" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\System.Data.SQLite.EF6.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\System.Data.SQLite.EF6.xml" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\System.Data.SQLite.Linq.dll" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\System.Data.SQLite.Linq.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\System.Data.SQLite.Linq.xml" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\System.Data.SQLite.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\System.Data.SQLite.xml" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\test.exe" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\test.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\testef6.exe" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\testef6.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\testlinq.exe" />
+    <Content Include="dll\sqlite-netFx45-binary-bundle-x64-2012-1.0.110.0\testlinq.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\Installer.exe" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\Installer.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\SQLite.Designer.dll" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\SQLite.Designer.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\SQLite.Designer.xml" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\SQLite.Interop.dll" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\SQLite.Interop.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\System.Data.SQLite.dll" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\System.Data.SQLite.EF6.dll" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\System.Data.SQLite.EF6.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\System.Data.SQLite.EF6.xml" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\System.Data.SQLite.Linq.dll" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\System.Data.SQLite.Linq.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\System.Data.SQLite.Linq.xml" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\System.Data.SQLite.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\System.Data.SQLite.xml" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\test.exe" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\test.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\testef6.exe" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\testef6.pdb" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\testlinq.exe" />
+    <Content Include="dll\sqlite-netFx45-binary-x64-2012-1.0.110.0\testlinq.pdb" />
+    <Content Include="Method_636.ico" />
+    <Content Include="train_72px_1118847_easyicon.net.ico" />
+    <Content Include="turbojpeg.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="问题.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ComClassLib\ComClassLib.csproj">
+      <Project>{e68a45b7-1041-4b5d-88bd-7ed088aa65f6}</Project>
+      <Name>ComClassLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+</Project>

@@ -1,0 +1,108 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PreCheckSys.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DbServIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.100.58</Value>
+    </Setting>
+    <Setting Name="MaxMem" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="DBPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F:\</Value>
+    </Setting>
+    <Setting Name="DBBackPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="sStartStation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">艮山门站</Value>
+    </Setting>
+    <Setting Name="sEndStation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">新桥站</Value>
+    </Setting>
+    <Setting Name="miniDiskSpace" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="Port" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6379</Value>
+    </Setting>
+    <Setting Name="currDBIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="SubDbSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5000</Value>
+    </Setting>
+    <Setting Name="videoPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">12345</Value>
+    </Setting>
+    <Setting Name="cameraIPA" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.100.55</Value>
+    </Setting>
+    <Setting Name="cameraIPB" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.100.52</Value>
+    </Setting>
+    <Setting Name="cameraIPC" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.100.53</Value>
+    </Setting>
+    <Setting Name="cameraIPD" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.100.54</Value>
+    </Setting>
+    <Setting Name="gwPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">9002</Value>
+    </Setting>
+    <Setting Name="cameralInfoA" Type="System.String" Scope="User">
+      <Value Profile="(Default)">吊弦相机1</Value>
+    </Setting>
+    <Setting Name="cameralInfoB" Type="System.String" Scope="User">
+      <Value Profile="(Default)">吊弦相机2</Value>
+    </Setting>
+    <Setting Name="cameralInfoC" Type="System.String" Scope="User">
+      <Value Profile="(Default)">吊弦相机3</Value>
+    </Setting>
+    <Setting Name="cameralInfoD" Type="System.String" Scope="User">
+      <Value Profile="(Default)">吊弦相机4</Value>
+    </Setting>
+    <Setting Name="RedColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">238, 102, 102</Value>
+    </Setting>
+    <Setting Name="GreenColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">137, 220, 102</Value>
+    </Setting>
+    <Setting Name="camera3DIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.100.56</Value>
+    </Setting>
+    <Setting Name="camera3DInfo" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> 3D相机</Value>
+    </Setting>
+    <Setting Name="AIServIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.100.20</Value>
+    </Setting>
+    <Setting Name="MainServIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.100.58</Value>
+    </Setting>
+    <Setting Name="SwitchIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168..100.200</Value>
+    </Setting>
+    <Setting Name="MainServInfo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">检测处理服务器</Value>
+    </Setting>
+    <Setting Name="AIServInfo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">智能分析服务器</Value>
+    </Setting>
+    <Setting Name="DBMemLimit" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">512</Value>
+    </Setting>
+    <Setting Name="ISaveImgNumByOnce" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="IDelDataByOnce" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="IImgNumTwoPole" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="isDelAllDB" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

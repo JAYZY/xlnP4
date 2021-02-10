@@ -1,0 +1,63 @@
+﻿Current Disk Queue Length
+% Disk Time
+Avg. Disk Queue Length
+% Disk Read Time
+Avg. Disk Read Queue Length
+% Disk Write Time
+Avg. Disk Write Queue Length
+Avg. Disk sec/Transfer
+Avg. Disk sec/Read
+Avg. Disk sec/Write
+Disk Transfers/sec
+Disk Reads/sec
+Disk Writes/sec
+Disk Bytes/sec
+Disk Read Bytes/sec
+Disk Write Bytes/sec
+Avg. Disk Bytes/Transfer
+Avg. Disk Bytes/Read
+Avg. Disk Bytes/Write
+% Idle Time
+Split IO/Sec
+Current Disk Queue Length
+% Disk Time
+Avg. Disk Queue Length
+% Disk Read Time
+Avg. Disk Read Queue Length
+% Disk Write Time
+Avg. Disk Write Queue Length
+Avg. Disk sec/Transfer
+Avg. Disk sec/Read
+Avg. Disk sec/Write
+Disk Transfers/sec
+Disk Reads/sec
+Disk Writes/sec
+Disk Bytes/sec
+Disk Read Bytes/sec
+Disk Write Bytes/sec
+Avg. Disk Bytes/Transfer
+Avg. Disk Bytes/Read
+Avg. Disk Bytes/Write
+% Idle Time
+Split IO/Sec
+Current Disk Queue Length
+% Disk Time
+Avg. Disk Queue Length
+% Disk Read Time
+Avg. Disk Read Queue Length
+% Disk Write Time
+Avg. Disk Write Queue Length
+Avg. Disk sec/Transfer
+Avg. Disk sec/Read
+Avg. Disk sec/Write
+Disk Transfers/sec
+Disk Reads/sec
+Disk Writes/sec
+Disk Bytes/sec
+Disk Read Bytes/sec
+Disk Write Bytes/sec
+Avg. Disk Bytes/Transfer
+Avg. Disk Bytes/Read
+Avg. Disk Bytes/Write
+% Idle Time
+Split IO/Se

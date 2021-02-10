@@ -1,0 +1,18 @@
+﻿需要解决
+1.启动软件后 自动扫描已有的图像
+
+
+离线分析软件：
+一.图像数据读取的方法
+1. 只读取 picInfo 中的数据  rowId,imgGuid,cId,shootTime,poleNum,KMValue,STN
+
+
+
+CREATE TABLE stationInfo(
+	sId INTEGER PRIMARY KEY AUTOINCREMENT,  -- 线路id		
+	sLineName varchar(50),						-- 线路名称
+	sStartStation varchar(50),
+	sEndStation varchar(50),
+	sType tinyint,
+	taskDate DATETIME NOT NULL
+);
