@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\PreCheckSys\bin\x64\Release\</OutputPath>
+    <OutputPath>..\x64\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -73,10 +73,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="core\ComFunc.cs" />
     <Compile Include="core\FigHandlingOverlay.cs" />
     <Compile Include="core\JpegCompress.cs" />
     <Compile Include="core\Crypto.cs" />
-    <Compile Include="core\Math.cs" />
+    <Compile Include="core\MyMath.cs" />
     <Compile Include="core\StationInfo.cs" />
     <Compile Include="CtrlView.cs">
       <SubType>UserControl</SubType>

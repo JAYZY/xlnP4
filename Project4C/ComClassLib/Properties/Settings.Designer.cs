@@ -25,7 +25,7 @@ namespace ComClassLib.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("192.168.100.58")]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.1.158")]
         public string DbServIP {
             get {
                 return ((string)(this["DbServIP"]));

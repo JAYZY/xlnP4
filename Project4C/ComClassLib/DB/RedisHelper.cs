@@ -74,11 +74,13 @@ namespace ComClassLib.DB {
         static RedisHelper() {
             ServIP = Settings.Default.DbServIP;
             Port = Settings.Default.Port;
-            ConfigurationOptions config = new ConfigurationOptions() {
+            MsgBox.Show(ServIP);
+            config = new ConfigurationOptions() {
                 EndPoints = { { ServIP, Port } },
                 AllowAdmin = true,
                 ConnectTimeout = 1000 //超时设置1s
             };
+          
             _connMultiplexer = ConnectionMultiplexer.Connect(config);
             DefaultKey = "";
             RegisterEvent();

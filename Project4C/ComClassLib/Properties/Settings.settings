@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DbServIP" Type="System.String" Scope="User">
-      <Value Profile="(Default)">192.168.100.58</Value>
+      <Value Profile="(Default)">192.168.1.158</Value>
     </Setting>
     <Setting Name="Port" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">6379</Value>

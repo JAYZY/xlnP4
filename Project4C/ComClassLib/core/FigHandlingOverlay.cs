@@ -715,14 +715,14 @@ namespace ComClassLib.core {
         protected virtual void RotateFigure(FVIL.GDI.CFviGdiFigure figure, FVIL.Data.CFviPoint current, MouseInfo info, KeyboardInfo key) {
             if (info.iGripPosition == 0) return;
 
-            FVIL.Data.CFviAngle st = Math.Angle(info.mouse, Math.Add(figure.Position, figure.Axis));
-            FVIL.Data.CFviAngle ed = Math.Angle(current, Math.Add(figure.Position, figure.Axis));
+            FVIL.Data.CFviAngle st = MyMath.Angle(info.mouse, MyMath.Add(figure.Position, figure.Axis));
+            FVIL.Data.CFviAngle ed = MyMath.Angle(current, MyMath.Add(figure.Position, figure.Axis));
 
             // 儃僞儞墴壓帪偐傜偺堏摦検傪寁嶼.
-            FVIL.Data.CFviAngle move = Math.Sub(ed, st);
+            FVIL.Data.CFviAngle move = MyMath.Sub(ed, st);
 
             // 恾宍傪夞揮.
-            figure.Angle = Math.Add(info.angle, move);
+            figure.Angle = MyMath.Add(info.angle, move);
         }
 
         /// <summary>
@@ -736,10 +736,10 @@ namespace ComClassLib.core {
             if (info.iGripPosition == 0) return;
 
             // 儃僞儞墴壓帪偐傜偺堏摦検傪寁嶼.
-            FVIL.Data.CFviPoint move = Math.Sub(current, info.mouse);
+            FVIL.Data.CFviPoint move = MyMath.Sub(current, info.mouse);
 
             // 恾宍傪堏摦.
-            figure.Position = Math.Add(info.position, move);
+            figure.Position = MyMath.Add(info.position, move);
         }
 
         /// <summary>
@@ -776,8 +776,8 @@ namespace ComClassLib.core {
             }
 
             // 儅僂僗墴壓帪偺忣曬偱嵗昗寁嶼偡傞.
-            FVIL.Data.CFviPoint axis = Math.Add(info.position, info.axis);
-            FVIL.Data.CFviAngle angle = Math.Invert(info.angle);
+            FVIL.Data.CFviPoint axis = MyMath.Add(info.position, info.axis);
+            FVIL.Data.CFviAngle angle = MyMath.Invert(info.angle);
             FVIL.Data.CFviPoint pos = FVIL.Math.Rotate(current, axis, angle);
 
             if (info.iGripPosition == 1)            // 巒揰.
@@ -791,7 +791,7 @@ namespace ComClassLib.core {
 
             // --- 婡幉偺曗惓.
             if (angle.Degree != 0.0)
-                figure.Axis = Math.Sub(axis, figure.Position);
+                figure.Axis = MyMath.Sub(axis, figure.Position);
         }
 
         /// <summary>
@@ -811,8 +811,8 @@ namespace ComClassLib.core {
             }
 
             // 儅僂僗墴壓帪偺忣曬偱嵗昗寁嶼偡傞.
-            FVIL.Data.CFviPoint axis = Math.Add(info.position, info.axis);
-            FVIL.Data.CFviAngle angle = Math.Invert(info.angle);
+            FVIL.Data.CFviPoint axis = MyMath.Add(info.position, info.axis);
+            FVIL.Data.CFviAngle angle = MyMath.Invert(info.angle);
             FVIL.Data.CFviPoint pos = FVIL.Math.Rotate(current, axis, angle);
 
             // 仸捈慄偺巒揰偲廔揰偼 GetClipRect 偐傜庢摼偱偒傑偡偑丄孹偒傪峫椂偡傞昁梫偑偁傝傑偡.
@@ -840,7 +840,7 @@ namespace ComClassLib.core {
             // --- 婡幉偺曗惓.
             //     仸捈慄偼 Size 偵傛偭偰巒揰偲廔揰偑曄峏偝傟傞偨傔丄婡幉偺曗惓偼偱偒傑偣傫.
             if (angle.Degree != 0.0)
-                figure.Axis = Math.Sub(axis, figure.Position);
+                figure.Axis = MyMath.Sub(axis, figure.Position);
         }
 
         /// <summary>
@@ -860,8 +860,8 @@ namespace ComClassLib.core {
             }
 
             // 儅僂僗墴壓帪偺忣曬偱嵗昗寁嶼偡傞.
-            FVIL.Data.CFviPoint axis = Math.Add(info.position, info.axis);
-            FVIL.Data.CFviAngle angle = Math.Invert(info.angle);
+            FVIL.Data.CFviPoint axis = MyMath.Add(info.position, info.axis);
+            FVIL.Data.CFviAngle angle = MyMath.Invert(info.angle);
             FVIL.Data.CFviPoint pos = FVIL.Math.Rotate(current, axis, angle);
 
             // 恾宍偺曄宍.
@@ -876,7 +876,7 @@ namespace ComClassLib.core {
 
             // --- 婡幉偺曗惓.
             if (angle.Degree != 0.0)
-                figure.Axis = Math.Sub(axis, figure.Position);
+                figure.Axis = MyMath.Sub(axis, figure.Position);
         }
 
         /// <summary>
@@ -897,11 +897,11 @@ namespace ComClassLib.core {
             }
 
             // 儅僂僗墴壓帪偺忣曬偱嵗昗寁嶼偡傞.
-            FVIL.Data.CFviPoint axis = Math.Add(info.position, info.axis);
-            FVIL.Data.CFviAngle angle = Math.Invert(info.angle);
+            FVIL.Data.CFviPoint axis = MyMath.Add(info.position, info.axis);
+            FVIL.Data.CFviAngle angle = MyMath.Invert(info.angle);
             FVIL.Data.CFviPoint mouse = FVIL.Math.Rotate(info.mouse, axis, angle);
             FVIL.Data.CFviPoint pos = FVIL.Math.Rotate(current, axis, angle);
-            FVIL.Data.CFviPoint move = Math.Sub(pos, mouse);
+            FVIL.Data.CFviPoint move = MyMath.Sub(pos, mouse);
 
             // 恾宍偺曄宍.
             bool L = ((rectpos & FVIL.GDI.RectPosition.Left) == FVIL.GDI.RectPosition.Left);
@@ -963,7 +963,7 @@ namespace ComClassLib.core {
 
             // --- 婡幉偺曗惓.
             if (angle.Degree != 0.0)
-                figure.Axis = Math.Sub(axis, figure.Position);
+                figure.Axis = MyMath.Sub(axis, figure.Position);
         }
 
         /// <summary>
@@ -984,8 +984,8 @@ namespace ComClassLib.core {
             }
 
             // 儅僂僗墴壓帪偺忣曬偱嵗昗寁嶼偡傞.
-            FVIL.Data.CFviPoint axis = Math.Add(info.position, info.axis);
-            FVIL.Data.CFviAngle angle = Math.Invert(info.angle);
+            FVIL.Data.CFviPoint axis = MyMath.Add(info.position, info.axis);
+            FVIL.Data.CFviAngle angle = MyMath.Invert(info.angle);
             FVIL.Data.CFviPoint pos = FVIL.Math.Rotate(current, axis, angle);
 
             // 恾宍偺曄宍.
@@ -1014,7 +1014,7 @@ namespace ComClassLib.core {
 
             // --- 婡幉偺曗惓.
             if (angle.Degree != 0.0)
-                figure.Axis = Math.Sub(axis, figure.Position);
+                figure.Axis = MyMath.Sub(axis, figure.Position);
         }
 
         /// <summary>
@@ -1035,8 +1035,8 @@ namespace ComClassLib.core {
             }
 
             // 儅僂僗墴壓帪偺忣曬偱嵗昗寁嶼偡傞.
-            FVIL.Data.CFviPoint axis = Math.Add(info.position, info.axis);
-            FVIL.Data.CFviAngle angle = Math.Invert(info.angle);
+            FVIL.Data.CFviPoint axis = MyMath.Add(info.position, info.axis);
+            FVIL.Data.CFviAngle angle = MyMath.Invert(info.angle);
             FVIL.Data.CFviPoint pos = FVIL.Math.Rotate(current, axis, angle);
 
             // 恾宍偺曄宍.
@@ -1062,7 +1062,7 @@ namespace ComClassLib.core {
 
             // --- 婡幉偺曗惓.
             if (angle.Degree != 0.0)
-                figure.Axis = Math.Sub(axis, figure.Position);
+                figure.Axis = MyMath.Sub(axis, figure.Position);
         }
 
         /// <summary>
@@ -1089,8 +1089,8 @@ namespace ComClassLib.core {
             }
             else {
                 // 儅僂僗墴壓帪偺忣曬偱嵗昗寁嶼偡傞.
-                FVIL.Data.CFviPoint axis = Math.Add(info.position, info.axis);
-                FVIL.Data.CFviAngle angle = Math.Invert(info.angle);
+                FVIL.Data.CFviPoint axis = MyMath.Add(info.position, info.axis);
+                FVIL.Data.CFviAngle angle = MyMath.Invert(info.angle);
                 FVIL.Data.CFviPoint pos = FVIL.Math.Rotate(current, axis, angle);
 
                 if (info.iGripPosition < 0) {
@@ -1104,7 +1104,7 @@ namespace ComClassLib.core {
 
                     // --- 婡幉偺曗惓.
                     if (angle.Degree != 0.0)
-                        figure.Axis = Math.Sub(axis, figure.Position);
+                        figure.Axis = MyMath.Sub(axis, figure.Position);
                 }
             }
         }
