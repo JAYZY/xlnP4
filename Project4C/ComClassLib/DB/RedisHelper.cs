@@ -74,21 +74,11 @@ namespace ComClassLib.DB {
         static RedisHelper() {
             ServIP = Settings.Default.DbServIP;
             Port = Settings.Default.Port;
-            MsgBox.Show(ServIP);
-            config = new ConfigurationOptions() {
-                EndPoints = { { ServIP, Port } },
-                AllowAdmin = true,
-                ConnectTimeout = 1000 //超时设置1s
-            };
-          
-            _connMultiplexer = ConnectionMultiplexer.Connect(config);
+            //MsgBox.Show(ServIP);
+
             DefaultKey = "";
-            RegisterEvent();
+           // RegisterEvent();
         }
-       
-
-
-        
         #endregion
 
         #region 通用方法(静态方法)
@@ -117,23 +107,21 @@ namespace ComClassLib.DB {
             bool res = true;
             try {
                 _connMultiplexer.GetServer(ServIP, Port).FlushAllDatabasesAsync();
-             }
-            catch {
+            } catch {
                 res = false;
             }
             return res;
         }
-        public static bool CheckConnect(string sSvrIp,int iPort) {
+        public static bool CheckConnect(string sSvrIp, int iPort) {
             bool res = true;
-            try {              
+            try {
                 ConfigurationOptions config = new ConfigurationOptions() {
                     EndPoints = { { sSvrIp, iPort } },
                     AllowAdmin = true,
                     ConnectTimeout = 1000 //超时设置1s
                 };
-                res= ConnectionMultiplexer.Connect(config).IsConnected;                
-            }
-            catch (Exception) {
+                res = ConnectionMultiplexer.Connect(config).IsConnected;
+            } catch (Exception) {
                 res = false;
             }
             return res;
@@ -143,8 +131,7 @@ namespace ComClassLib.DB {
                 bool res = true;
                 try {
                     res = _connMultiplexer.IsConnected;
-                }
-                catch (Exception) {
+                } catch (Exception) {
                     res = false;
 
                 }
@@ -177,8 +164,7 @@ namespace ComClassLib.DB {
                     var data = memoryStream.ToArray();
                     return data;
                 }
-            }
-            catch (SerializationException ex) {
+            } catch (SerializationException ex) {
                 throw ex;
             }
         }
@@ -199,6 +185,28 @@ namespace ComClassLib.DB {
                 return result;
             }
         }
+        private bool Connect() {
+            if (IsConnect) {
+                return true;
+            }
+            bool res = false;
+
+            if (config == null) {
+                config = new ConfigurationOptions() {
+                    EndPoints = { { ServIP, Port } },
+                    AllowAdmin = true,
+                    ConnectTimeout = 1000 //超时设置1s
+                };
+            }
+            try {
+                //链接redis数据库
+                _connMultiplexer = ConnectionMultiplexer.Connect(config);
+                res = true;
+            } catch {
+                res = false;
+            }
+            return res;
+        }
         #endregion
 
         /// <summary>
@@ -206,7 +214,8 @@ namespace ComClassLib.DB {
         /// </summary>
         /// <param name="db">要获取的数据库ID</param>
         public RedisHelper(int db = -1) {
-            _db = _connMultiplexer.GetDatabase(db);
+            if (!Connect())//链接失败
+             { _db = _connMultiplexer.GetDatabase(db);}
 
         }
 
@@ -242,8 +251,7 @@ namespace ComClassLib.DB {
             try {
                 redisKey = AddKeyPrefix(redisKey);
                 return _db.StringGet(redisKey);
-            }
-            catch (TypeAccessException ex) {
+            } catch (TypeAccessException ex) {
                 throw ex;
             }
         }
@@ -259,12 +267,10 @@ namespace ComClassLib.DB {
                 RedisValue rdv = _db.StringGet(redisKey);
                 if (rdv.IsNullOrEmpty) {
                     rByt = null;
-                }
-                else {
+                } else {
                     rByt = rdv;
                 }
-            }
-            catch (System.Exception) {
+            } catch (System.Exception) {
                 rByt = null;
             }
             return rByt;
@@ -653,8 +659,7 @@ namespace ComClassLib.DB {
             try {
                 redisKey = AddKeyPrefix(redisKey);
                 return _db.ListRange(redisKey);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 throw ex;
             }
         }
@@ -700,7 +705,7 @@ namespace ComClassLib.DB {
             redisKey = AddKeyPrefix(redisKey);
             return _db.ListLeftPush(redisKey, Serialize(redisValue));
         }
-        public void ListSetValueInHead(string redisKey,long redisValue) {
+        public void ListSetValueInHead(string redisKey, long redisValue) {
             redisKey = AddKeyPrefix(redisKey);
             _db.ListSetByIndex(redisKey, 0, redisValue);
         }

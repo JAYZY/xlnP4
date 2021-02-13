@@ -77,12 +77,14 @@ namespace RedisMemoryManager {
             ToastNotification.Show(this, $"一次性批量删除图像-{m_iDelDataByOnce} 张，设置成功！", null, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter);
         }
         #region #Redis 操作
-        private void IniRedis() {
+        //打开&连接 Redis 数据库
+        private void OpenRedis() {
+            m_iMemLimit = iInputMaxMemory.Value;
+            m_iDelDataByOnce = 100;
             imgDB = new RedisHelper(m_sImgDbId);                     //图像数据库ID
             imgInfoDB = new RedisHelper(m_sInfoDbIdx);               //图像信息数据库ID
             locDB = new RedisHelper(m_sAIFaultDbId);                 //定位数据库ID  
-            m_iMemLimit = iInputMaxMemory.Value;
-            m_iDelDataByOnce = 100;
+            
         }
 
         private void btnSetMemLimit_Click(object sender, System.EventArgs e) {
