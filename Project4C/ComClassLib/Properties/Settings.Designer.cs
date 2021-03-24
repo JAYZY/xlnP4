@@ -26,24 +26,36 @@ namespace ComClassLib.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("192.168.1.158")]
-        public string DbServIP {
+        public string RedisServIP {
             get {
-                return ((string)(this["DbServIP"]));
+                return ((string)(this["RedisServIP"]));
             }
             set {
-                this["DbServIP"] = value;
+                this["RedisServIP"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("6379")]
-        public int Port {
+        public int RedisPort {
             get {
-                return ((int)(this["Port"]));
+                return ((int)(this["RedisPort"]));
             }
             set {
-                this["Port"] = value;
+                this["RedisPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public int RedisDBTimeout {
+            get {
+                return ((int)(this["RedisDBTimeout"]));
+            }
+            set {
+                this["RedisDBTimeout"] = value;
             }
         }
     }

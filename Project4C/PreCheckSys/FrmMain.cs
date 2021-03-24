@@ -560,7 +560,6 @@ namespace PreCheckSys {
                             if (rTbTaskMsg.Lines.Count() > 60) {
                                 rTbTaskMsg.Lines = rTbTaskMsg.Lines.Skip(5).ToArray();
                             }
-
                             rTbTaskMsg.AppendText($"{prex}->{s[1]}\n");
                             rTbTaskMsg.ScrollToCaret();
                             break;

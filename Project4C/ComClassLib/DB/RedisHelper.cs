@@ -21,15 +21,22 @@ namespace ComClassLib.DB {
         /// </summary>
         //private static readonly string ConnectionString;
 
-        private static readonly string ServIP;
-        private static readonly int Port;
+        public static readonly string ServIP;
+        public static readonly int Port;
+        private static readonly int Timeout;
+
         /// <summary>
         /// redis 连接对象
         /// </summary>
-        public static IConnectionMultiplexer _connMultiplexer;
+        public static IConnectionMultiplexer ConnMultiplexer;
 
 
-        public static ConfigurationOptions config;
+        public static ConfigurationOptions Config;
+
+        /// <summary>
+        /// 数据库服务器连接是否正常
+        /// </summary>
+        public static bool IsServConnect;
         /// <summary>
         /// 默认的key值（用来当作RedisKey的前缀）
         /// </summary>
@@ -38,63 +45,60 @@ namespace ComClassLib.DB {
         /// 锁
         /// </summary>
         private static readonly object Locker = new object();
-        /// <summary>
-        /// 数据库访问对象
-        /// </summary>
-        private readonly IDatabase _db;
-        /// <summary>
-        /// 采用双重锁单例模式，保证数据访问对象有且仅有一个
-        /// </summary>
-        /// <returns></returns>
-        public IConnectionMultiplexer GetConnectionRedisMultiplexer() {
-            if ((_connMultiplexer == null || !_connMultiplexer.IsConnected)) {
-                lock (Locker) {
-                    if ((_connMultiplexer == null || !_connMultiplexer.IsConnected)) {
-                        _connMultiplexer = ConnectionMultiplexer.Connect(config);
-                    }
-                }
-            }
-            return _connMultiplexer;
-        }
-        /// <summary>
-        /// 添加事务处理
-        /// </summary>
-        /// <returns></returns>
-        public ITransaction GetTransaction() {
-            //创建事务
-            return _db.CreateTransaction();
-        }
 
-        #region 构造函数
+
+        #region 静态构造函数
         /// <summary>
         /// 静态的构造函数,
         /// 构造函数是属于类的，而不是属于实例的
         /// 就是说这个构造函数只会被执行一次。也就是在创建第一个实例或引用任何静态成员之前，由.NET自动调用。
         /// </summary>
         static RedisHelper() {
-            ServIP = Settings.Default.DbServIP;
-            Port = Settings.Default.Port;
-            //MsgBox.Show(ServIP);
-
+            ServIP ="192.168.1.158";//Settings.Default.RedisServIP;
+            Port = Settings.Default.RedisPort;
+            Timeout = Settings.Default.RedisDBTimeout;
+            if (Config == null) {
+                Config = new ConfigurationOptions() {
+                    EndPoints = { { ServIP, Port } },
+                    AllowAdmin = true,
+                    ConnectTimeout = Timeout //超时设置 
+                };
+            }
+            IsServConnect = false;
             DefaultKey = "";
-           // RegisterEvent();
+            //RegisterEvent();
         }
         #endregion
 
         #region 通用方法(静态方法)
+        /// <summary>
+        /// 得到使用内存 单位字节
+        /// </summary>
+        /// <returns></returns>
         public static double GetUsedMem() {
             double usedMEM = 0;
-            var servInfo = _connMultiplexer.GetServer(ServIP, Port).Info();
-            foreach (var info in servInfo) {
-                if (info.Key.Equals("Memory")) {
-                    foreach (var item in info) {
-                        Console.WriteLine(item.Value);
-                        if (item.Key.Equals("used_memory")) {
-                            usedMEM = Double.Parse(item.Value) / 1048576.0;
-                            goto end;
+            try {
+
+                if (RedisConnect) {
+                    lock (Locker) {
+                        var servInfo = ConnMultiplexer.GetServer(ServIP, Port).Info();
+
+                        foreach (var info in servInfo) {
+                            if (info.Key.Equals("Memory")) {
+                                foreach (var item in info) {
+                                    Console.WriteLine(item.Value);
+                                    if (item.Key.Equals("used_memory")) {
+                                        usedMEM = Double.Parse(item.Value);
+                                        goto end;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
+            } catch (Exception ex) {
+                Console.WriteLine($"GetUsedMem is Error:{ex.ToString()}");
+                usedMEM = -1;
             }
         end:
             return usedMEM;
@@ -106,7 +110,7 @@ namespace ComClassLib.DB {
         public static bool ClearAllDB() {
             bool res = true;
             try {
-                _connMultiplexer.GetServer(ServIP, Port).FlushAllDatabasesAsync();
+                ConnMultiplexer.GetServer(ServIP, Port).FlushAllDatabasesAsync();
             } catch {
                 res = false;
             }
@@ -126,16 +130,36 @@ namespace ComClassLib.DB {
             }
             return res;
         }
-        public static bool IsConnect {
+        /// <summary>
+        /// 连接Redis数据服务器 
+        /// </summary>
+        public static bool RedisConnect {
             get {
-                bool res = true;
-                try {
-                    res = _connMultiplexer.IsConnected;
-                } catch (Exception) {
-                    res = false;
-
+                if (IsServConnect) {
+                    return true;
                 }
-                return res;
+                try {
+                    if (Config == null) {
+                        Config = new ConfigurationOptions() {
+                            EndPoints = { { ServIP, Port } },
+                            AllowAdmin = true,
+                            ConnectTimeout = Timeout //超时设置 
+                        };
+                    }
+                    if (ConnMultiplexer == null) {
+                        if ((ConnMultiplexer == null || !ConnMultiplexer.IsConnected)) {
+                            lock (Locker) {
+                                if ((ConnMultiplexer == null || !ConnMultiplexer.IsConnected)) {
+                                    ConnMultiplexer = ConnectionMultiplexer.Connect(Config);
+                                }
+                            }
+                        }
+                    }
+                    IsServConnect = ConnMultiplexer.IsConnected;
+                } catch (Exception) {
+                    IsServConnect = false;
+                }
+                return IsServConnect;
             }
         }
         /// <summary>
@@ -157,7 +181,6 @@ namespace ComClassLib.DB {
                 if (obj == null) {
                     return null;
                 }
-
                 var binaryFormatter = new BinaryFormatter();
                 using (var memoryStream = new MemoryStream()) {
                     binaryFormatter.Serialize(memoryStream, obj);
@@ -185,39 +208,72 @@ namespace ComClassLib.DB {
                 return result;
             }
         }
-        private bool Connect() {
-            if (IsConnect) {
-                return true;
-            }
-            bool res = false;
 
-            if (config == null) {
-                config = new ConfigurationOptions() {
-                    EndPoints = { { ServIP, Port } },
-                    AllowAdmin = true,
-                    ConnectTimeout = 1000 //超时设置1s
-                };
+        #endregion
+
+
+        #region 成员属性
+        /// <summary>
+        /// 数据库访问对象
+        /// </summary>
+        private IDatabase db;
+
+        /// <summary>
+        /// 数据库编号
+        /// </summary>
+        private int dbInd;
+
+        /// <summary>
+        /// 采用双重锁单例模式，保证数据访问对象有且仅有一个
+        /// </summary>
+        /// <returns></returns>
+        public IConnectionMultiplexer GetConnectionRedisMultiplexer() {
+            if ((ConnMultiplexer == null || !ConnMultiplexer.IsConnected)) {
+                lock (Locker) {
+                    if ((ConnMultiplexer == null || !ConnMultiplexer.IsConnected)) {
+                        ConnMultiplexer = ConnectionMultiplexer.Connect(Config);
+                    }
+                }
             }
-            try {
-                //链接redis数据库
-                _connMultiplexer = ConnectionMultiplexer.Connect(config);
-                res = true;
-            } catch {
-                res = false;
-            }
-            return res;
+            return ConnMultiplexer;
+        }
+        /// <summary>
+        /// 添加事务处理
+        /// </summary>
+        /// <returns></returns>
+        public ITransaction GetTransaction() {
+            //创建事务
+            return this.db.CreateTransaction();
         }
         #endregion
 
         /// <summary>
         /// 重载构造器，获取redis内部数据库的交互式连接
         /// </summary>
-        /// <param name="db">要获取的数据库ID</param>
-        public RedisHelper(int db = -1) {
-            if (!Connect())//链接失败
-             { _db = _connMultiplexer.GetDatabase(db);}
-
+        /// <param name="dbInd">要获取的数据库ID</param>
+        public RedisHelper(int dbInd = -1) {
+            this.dbInd = dbInd;
         }
+        private bool IsDbConnect { get; set; }
+
+        public bool DbConnect() {
+            if (IsDbConnect) {
+                return true;
+            }
+            IsDbConnect = false;
+            try {
+                if (true == RedisConnect) {
+                    //链接指定的库
+                    db = ConnMultiplexer.GetDatabase(dbInd);
+                    IsDbConnect = true;
+                }
+            } catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
+                IsDbConnect = false;
+            }
+            return IsDbConnect;
+        }
+
 
         #region stringGet 
         /// <summary>
@@ -229,7 +285,19 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public bool StringSet(string redisKey, string redisValue, TimeSpan? expried = null) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.StringSet(redisKey, redisValue, expried);
+            bool res = false;
+            try {
+                if (DbConnect()) {
+                    res = db.StringSet(redisKey, redisValue, expried);
+                } else {
+                    res = false;
+                    IsDbConnect = false;
+                }
+            } catch {
+                res = false;
+                IsDbConnect = false;
+            }
+            return res;
         }
         /// <summary>
         /// 保存多个key-value
@@ -237,9 +305,22 @@ namespace ComClassLib.DB {
         /// <param name="keyValuePairs"></param>
         /// <returns></returns>
         public bool StringSet(IEnumerable<KeyValuePair<RedisKey, RedisValue>> keyValuePairs) {
-            keyValuePairs =
-                keyValuePairs.Select(x => new KeyValuePair<RedisKey, RedisValue>(AddKeyPrefix(x.Key), x.Value));
-            return _db.StringSet(keyValuePairs.ToArray());
+            bool res = false;
+            try {
+                if (DbConnect()) {
+                    keyValuePairs = keyValuePairs.Select(x => new KeyValuePair<RedisKey, RedisValue>(AddKeyPrefix(x.Key), x.Value));
+                    res = db.StringSet(keyValuePairs.ToArray());
+                } else {
+                    res = false;
+                    IsDbConnect = false;
+                }
+            } catch {
+                res = false;
+                IsDbConnect = false;
+            }
+            return res;
+
+
         }
         /// <summary>
         /// 获取字符串
@@ -248,12 +329,19 @@ namespace ComClassLib.DB {
         /// <param name="expired"></param>
         /// <returns></returns>
         public string StringGet(string redisKey) {
+
+            string resStr = string.Empty;
             try {
-                redisKey = AddKeyPrefix(redisKey);
-                return _db.StringGet(redisKey);
-            } catch (TypeAccessException ex) {
-                throw ex;
+                if (DbConnect()) {
+                    redisKey = AddKeyPrefix(redisKey);
+                    resStr = db.StringGet(redisKey);
+                }
+            } catch {
+                IsDbConnect = false;
             }
+            return resStr;
+
+
         }
         /// <summary>
         /// 返回图像字节
@@ -263,15 +351,18 @@ namespace ComClassLib.DB {
         public byte[] GetByte(string redisKey) {
             byte[] rByt = null;
             try {
-                redisKey = AddKeyPrefix(redisKey);
-                RedisValue rdv = _db.StringGet(redisKey);
-                if (rdv.IsNullOrEmpty) {
-                    rByt = null;
-                } else {
-                    rByt = rdv;
+                if (DbConnect()) {
+                    redisKey = AddKeyPrefix(redisKey);
+                    RedisValue rdv = db.StringGet(redisKey);
+                    if (rdv.IsNullOrEmpty) {
+                        rByt = null;
+                    } else {
+                        rByt = rdv;
+                    }
                 }
             } catch (System.Exception) {
                 rByt = null;
+                IsDbConnect = false;
             }
             return rByt;
 
@@ -285,9 +376,20 @@ namespace ComClassLib.DB {
         /// <param name="expired"></param>
         /// <returns></returns>
         public bool StringSet<T>(string redisKey, T redisValue, TimeSpan? expired = null) {
-            redisKey = AddKeyPrefix(redisKey);
-            var json = Serialize(redisKey);
-            return _db.StringSet(redisKey, json, expired);
+            bool res = false;
+            try {
+                if (DbConnect()) {
+                    redisKey = AddKeyPrefix(redisKey);
+                    var json = Serialize(redisKey);
+                    res = db.StringSet(redisKey, json, expired);
+                }
+
+            } catch {
+                res = false;
+                IsDbConnect = false;
+            }
+
+            return res;
         }
         /// <summary>
         /// 获取一个对象(会进行反序列化)
@@ -297,8 +399,15 @@ namespace ComClassLib.DB {
         /// <param name="expired"></param>
         /// <returns></returns>
         public T StringGet<T>(string redisKey) {
-            redisKey = AddKeyPrefix(redisKey);
-            return FileOp.JsonHelper.GetModel<T>(_db.StringGet(redisKey));
+            try {
+                if (DbConnect()) {
+                    redisKey = AddKeyPrefix(redisKey);
+                    return FileOp.JsonHelper.GetModel<T>(db.StringGet(redisKey));
+                }
+            } catch {
+                IsDbConnect = false;
+            }
+            return default(T);
         }
 
         /// <summary>
@@ -310,7 +419,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<bool> StringSetAsync(string redisKey, string redisValue, TimeSpan? expired = null) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.StringSetAsync(redisKey, redisValue, expired);
+            return await db.StringSetAsync(redisKey, redisValue, expired);
         }
         /// <summary>
         /// 保存一个字符串值
@@ -320,7 +429,7 @@ namespace ComClassLib.DB {
         public async Task<bool> StringSetAsync(IEnumerable<KeyValuePair<RedisKey, RedisValue>> keyValuePairs) {
             keyValuePairs
                 = keyValuePairs.Select(x => new KeyValuePair<RedisKey, RedisValue>(AddKeyPrefix(x.Key), x.Value));
-            return await _db.StringSetAsync(keyValuePairs.ToArray());
+            return await db.StringSetAsync(keyValuePairs.ToArray());
         }
         /// <summary>
         /// 获取单个值
@@ -331,7 +440,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<string> StringGetAsync(string redisKey, string redisValue, TimeSpan? expired = null) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.StringGetAsync(redisKey);
+            return await db.StringGetAsync(redisKey);
         }
         /// <summary>
         /// 存储一个对象（该对象会被序列化保存）
@@ -344,7 +453,7 @@ namespace ComClassLib.DB {
         public async Task<bool> StringSetAsync<T>(string redisKey, string redisValue, TimeSpan? expired = null) {
             redisKey = AddKeyPrefix(redisKey);
             var json = Serialize(redisValue);
-            return await _db.StringSetAsync(redisKey, json, expired);
+            return await db.StringSetAsync(redisKey, json, expired);
         }
         /// <summary>
         /// 获取一个对象（反序列化）
@@ -356,7 +465,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<T> StringGetAsync<T>(string redisKey, string redisValue, TimeSpan? expired = null) {
             redisKey = AddKeyPrefix(redisKey);
-            return Deserialize<T>(await _db.StringGetAsync(redisKey));
+            return Deserialize<T>(await db.StringGetAsync(redisKey));
         }
         #endregion
 
@@ -369,7 +478,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public bool HashExist(string redisKey, string hashField) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.HashExists(redisKey, hashField);
+            return db.HashExists(redisKey, hashField);
         }
         /// <summary>
         /// 从hash 中删除字段
@@ -379,7 +488,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public bool HashDelete(string redisKey, string hashField) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.HashDelete(redisKey, hashField);
+            return db.HashDelete(redisKey, hashField);
         }
         /// <summary>
         /// 从hash中移除指定字段
@@ -389,7 +498,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public long HashDelete(string redisKey, IEnumerable<RedisValue> hashField) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.HashDelete(redisKey, hashField.ToArray());
+            return db.HashDelete(redisKey, hashField.ToArray());
         }
         /// <summary>
         /// 在hash中设定值
@@ -400,7 +509,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public bool HashSet(string redisKey, string hashField, string value) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.HashSet(redisKey, hashField, value);
+            return db.HashSet(redisKey, hashField, value);
         }
         /// <summary>
         /// 从Hash 中获取值
@@ -410,7 +519,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public RedisValue HashGet(string redisKey, string hashField) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.HashGet(redisKey, hashField);
+            return db.HashGet(redisKey, hashField);
         }
         /// <summary>
         /// 从Hash 中获取值
@@ -420,7 +529,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public RedisValue[] HashGet(string redisKey, RedisValue[] hashField) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.HashGet(redisKey, hashField);
+            return db.HashGet(redisKey, hashField);
         }
         /// <summary>
         /// 从hash 返回所有的key值
@@ -429,7 +538,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public IEnumerable<RedisValue> HashKeys(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.HashKeys(redisKey);
+            return db.HashKeys(redisKey);
         }
         /// <summary>
         /// 根据key返回hash中的值
@@ -438,7 +547,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public RedisValue[] HashValues(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.HashValues(redisKey);
+            return db.HashValues(redisKey);
         }
         /// <summary>
         /// 
@@ -451,7 +560,7 @@ namespace ComClassLib.DB {
         public bool HashSet<T>(string redisKey, string hashField, T value) {
             redisKey = AddKeyPrefix(redisKey);
             var json = Serialize(value);
-            return _db.HashSet(redisKey, hashField, json);
+            return db.HashSet(redisKey, hashField, json);
         }
         /// <summary>
         /// 在hash 中获取值 （反序列化）
@@ -462,7 +571,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public T HashGet<T>(string redisKey, string hashField) {
             redisKey = AddKeyPrefix(redisKey);
-            return Deserialize<T>(_db.HashGet(redisKey, hashField));
+            return Deserialize<T>(db.HashGet(redisKey, hashField));
         }
         /// <summary>
         /// 判断字段是否存在hash 中
@@ -472,7 +581,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<bool> HashExistsAsync(string redisKey, string hashField) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.HashExistsAsync(redisKey, hashField);
+            return await db.HashExistsAsync(redisKey, hashField);
         }
         /// <summary>
         /// 从hash中移除指定字段
@@ -482,7 +591,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<bool> HashDeleteAsync(string redisKey, string hashField) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.HashDeleteAsync(redisKey, hashField);
+            return await db.HashDeleteAsync(redisKey, hashField);
         }
         /// <summary>
         /// 从hash中移除指定字段
@@ -492,7 +601,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<long> HashDeleteAsync(string redisKey, IEnumerable<RedisValue> hashField) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.HashDeleteAsync(redisKey, hashField.ToArray());
+            return await db.HashDeleteAsync(redisKey, hashField.ToArray());
         }
         /// <summary>
         /// 在hash 设置值
@@ -503,7 +612,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<bool> HashSetAsync(string redisKey, string hashField, string value) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.HashSetAsync(redisKey, hashField, value);
+            return await db.HashSetAsync(redisKey, hashField, value);
         }
         /// <summary>
         /// 在hash 中设定值
@@ -513,7 +622,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task HashSetAsync(string redisKey, IEnumerable<HashEntry> hashFields) {
             redisKey = AddKeyPrefix(redisKey);
-            await _db.HashSetAsync(redisKey, hashFields.ToArray());
+            await db.HashSetAsync(redisKey, hashFields.ToArray());
         }
         /// <summary>
         /// 在hash 中设定值
@@ -523,7 +632,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<RedisValue> HashGetAsync(string redisKey, string hashField) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.HashGetAsync(redisKey, hashField);
+            return await db.HashGetAsync(redisKey, hashField);
         }
         /// <summary>
         /// 在hash 中获取值
@@ -534,7 +643,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<IEnumerable<RedisValue>> HashGetAsync(string redisKey, RedisValue[] hashField, string value) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.HashGetAsync(redisKey, hashField);
+            return await db.HashGetAsync(redisKey, hashField);
         }
         /// <summary>
         /// 从hash返回所有的字段值
@@ -543,7 +652,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<IEnumerable<RedisValue>> HashKeysAsync(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.HashKeysAsync(redisKey);
+            return await db.HashKeysAsync(redisKey);
         }
         /// <summary>
         /// 返回hash中所有的值
@@ -552,7 +661,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<IEnumerable<RedisValue>> HashValuesAsync(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.HashValuesAsync(redisKey);
+            return await db.HashValuesAsync(redisKey);
         }
         /// <summary>
         /// 在hash 中设定值（序列化）
@@ -565,7 +674,7 @@ namespace ComClassLib.DB {
         public async Task<bool> HashSetAsync<T>(string redisKey, string hashField, T value) {
             redisKey = AddKeyPrefix(redisKey);
             var json = Serialize(value);
-            return await _db.HashSetAsync(redisKey, hashField, json);
+            return await db.HashSetAsync(redisKey, hashField, json);
         }
         /// <summary>
         /// 在hash中获取值（反序列化）
@@ -576,7 +685,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<T> HashGetAsync<T>(string redisKey, string hashField) {
             redisKey = AddKeyPrefix(redisKey);
-            return Deserialize<T>(await _db.HashGetAsync(redisKey, hashField));
+            return Deserialize<T>(await db.HashGetAsync(redisKey, hashField));
         }
         #endregion
 
@@ -589,8 +698,16 @@ namespace ComClassLib.DB {
         /// <param name="stop"></param>
         /// <returns></returns>
         public string[] ListRange(string redisKey, long start, long stop) {
-            redisKey = AddKeyPrefix(redisKey);
-            return _db.ListRange(redisKey, start, stop).ToStringArray();
+
+            try {
+                if (DbConnect()) {
+                    redisKey = AddKeyPrefix(redisKey);
+                    return db.ListRange(redisKey, start, stop).ToStringArray();
+                }
+            } catch {
+                IsDbConnect = false;
+            }
+            return null;
         }
 
         /// <summary>
@@ -600,7 +717,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public string ListLeftPop(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.ListLeftPop(redisKey);
+            return db.ListLeftPop(redisKey);
         }
         /// <summary>
         /// 移除并返回key所对应列表的最后一个元素
@@ -609,7 +726,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public string ListRightPop(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.ListRightPop(redisKey);
+            return db.ListRightPop(redisKey);
         }
         /// <summary>
         /// 移除指定key及key所对应的元素
@@ -619,7 +736,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public long ListRemove(string redisKey, string redisValue) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.ListRemove(redisKey, redisValue);
+            return db.ListRemove(redisKey, redisValue);
         }
         /// <summary>
         /// 在列表尾部插入值，如果键不存在，先创建再插入值
@@ -629,7 +746,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public long ListRightPush(string redisKey, string redisValue) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.ListRightPush(redisKey, redisValue);
+            return db.ListRightPush(redisKey, redisValue);
         }
         /// <summary>
         /// 在列表头部插入值，如果键不存在，先创建再插入值
@@ -639,7 +756,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public long ListLeftPush(string redisKey, string redisValue) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.ListLeftPush(redisKey, redisValue);
+            return db.ListLeftPush(redisKey, redisValue);
         }
         /// <summary>
         /// 返回列表上该键的长度，如果不存在，返回0
@@ -648,7 +765,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public long ListLength(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.ListLength(redisKey);
+            return db.ListLength(redisKey);
         }
         /// <summary>
         /// 返回在该列表上键所对应的元素
@@ -658,7 +775,7 @@ namespace ComClassLib.DB {
         public IEnumerable<RedisValue> ListRange(string redisKey) {
             try {
                 redisKey = AddKeyPrefix(redisKey);
-                return _db.ListRange(redisKey);
+                return db.ListRange(redisKey);
             } catch (Exception ex) {
                 throw ex;
             }
@@ -671,7 +788,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public T ListLeftPop<T>(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return Deserialize<T>(_db.ListLeftPop(redisKey));
+            return Deserialize<T>(db.ListLeftPop(redisKey));
         }
         /// <summary>
         /// 移除并返回该列表上的最后一个元素
@@ -681,7 +798,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public T ListRightPop<T>(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return Deserialize<T>(_db.ListRightPop(redisKey));
+            return Deserialize<T>(db.ListRightPop(redisKey));
         }
         /// <summary>
         /// 在列表尾部插入值，如果键不存在，先创建再插入值
@@ -692,7 +809,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public long ListRightPush<T>(string redisKey, T redisValue) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.ListRightPush(redisKey, Serialize(redisValue));
+            return db.ListRightPush(redisKey, Serialize(redisValue));
         }
         /// <summary>
         /// 在列表头部插入值，如果键不存在，创建后插入值
@@ -703,11 +820,11 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public long ListLeftPush<T>(string redisKey, T redisValue) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.ListLeftPush(redisKey, Serialize(redisValue));
+            return db.ListLeftPush(redisKey, Serialize(redisValue));
         }
         public void ListSetValueInHead(string redisKey, long redisValue) {
             redisKey = AddKeyPrefix(redisKey);
-            _db.ListSetByIndex(redisKey, 0, redisValue);
+            db.ListSetByIndex(redisKey, 0, redisValue);
         }
         /// <summary>
         /// 移除并返回存储在该键列表的第一个元素
@@ -716,7 +833,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<string> ListLeftPopAsync(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.ListLeftPopAsync(redisKey);
+            return await db.ListLeftPopAsync(redisKey);
         }
         /// <summary>
         /// 移除并返回存储在该键列表的最后一个元素
@@ -725,7 +842,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<string> ListRightPopAsync(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.ListRightPopAsync(redisKey);
+            return await db.ListRightPopAsync(redisKey);
         }
         /// <summary>
         /// 移除列表指定键上与值相同的元素
@@ -734,7 +851,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<long> ListRemoveAsync(string redisKey, string redisValue) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.ListRemoveAsync(redisKey, redisValue);
+            return await db.ListRemoveAsync(redisKey, redisValue);
         }
         /// <summary>
         /// 在列表尾部差入值，如果键不存在，先创建后插入
@@ -754,7 +871,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<long> ListLeftPushAsync(string redisKey, string redisValue) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.ListLeftPushAsync(redisKey, redisValue);
+            return await db.ListLeftPushAsync(redisKey, redisValue);
         }
         /// <summary>
         /// 返回列表上的长度，如果不存在，返回0
@@ -763,7 +880,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<long> ListLengthAsync(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.ListLengthAsync(redisKey);
+            return await db.ListLengthAsync(redisKey);
         }
         /// <summary>
         /// 返回在列表上键对应的元素
@@ -772,7 +889,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<IEnumerable<RedisValue>> ListRangeAsync(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.ListRangeAsync(redisKey);
+            return await db.ListRangeAsync(redisKey);
         }
         /// <summary>
         /// 移除并返回存储在key对应列表的第一个元素
@@ -782,7 +899,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<T> ListLeftPopAsync<T>(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return Deserialize<T>(await _db.ListLeftPopAsync(redisKey));
+            return Deserialize<T>(await db.ListLeftPopAsync(redisKey));
         }
         /// <summary>
         /// 移除并返回存储在key 对应列表的最后一个元素
@@ -792,7 +909,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<T> ListRightPopAsync<T>(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return Deserialize<T>(await _db.ListRightPopAsync(redisKey));
+            return Deserialize<T>(await db.ListRightPopAsync(redisKey));
         }
         /// <summary>
         /// 在列表尾部插入值，如果值不存在，先创建后写入值
@@ -803,7 +920,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<long> ListRightPushAsync<T>(string redisKey, string redisValue) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.ListRightPushAsync(redisKey, Serialize(redisValue));
+            return await db.ListRightPushAsync(redisKey, Serialize(redisValue));
         }
         /// <summary>
         /// 在列表头部插入值，如果值不存在，先创建后写入值
@@ -814,7 +931,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<long> ListLeftPushAsync<T>(string redisKey, string redisValue) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.ListLeftPushAsync(redisKey, Serialize(redisValue));
+            return await db.ListLeftPushAsync(redisKey, Serialize(redisValue));
         }
         #endregion
 
@@ -828,7 +945,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public bool SortedSetAdd(string redisKey, string member, double score) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.SortedSetAdd(redisKey, member, score);
+            return db.SortedSetAdd(redisKey, member, score);
         }
         /// <summary>
         /// 在有序集合中返回指定范围的元素，默认情况下由低到高
@@ -837,7 +954,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public IEnumerable<RedisValue> SortedSetRangeByRank(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.SortedSetRangeByRank(redisKey);
+            return db.SortedSetRangeByRank(redisKey);
         }
         /// <summary>
         /// 返回有序集合的个数
@@ -846,7 +963,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public long SortedSetLength(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.SortedSetLength(redisKey);
+            return db.SortedSetLength(redisKey);
         }
         /// <summary>
         /// 返回有序集合的元素个数
@@ -856,7 +973,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public bool SortedSetLength(string redisKey, string member) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.SortedSetRemove(redisKey, member);
+            return db.SortedSetRemove(redisKey, member);
         }
         /// <summary>
         ///  sorted set Add
@@ -869,7 +986,7 @@ namespace ComClassLib.DB {
         public bool SortedSetAdd<T>(string redisKey, T member, double score) {
             redisKey = AddKeyPrefix(redisKey);
             var json = Serialize(member);
-            return _db.SortedSetAdd(redisKey, json, score);
+            return db.SortedSetAdd(redisKey, json, score);
         }
 
         #region SortedSet-Async
@@ -882,7 +999,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<bool> SortedSetAddAsync(string redisKey, string member, double score) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.SortedSetAddAsync(redisKey, member, score);
+            return await db.SortedSetAddAsync(redisKey, member, score);
         }
         /// <summary>
         /// 在有序集合中返回指定范围的元素，默认情况下由低到高
@@ -891,7 +1008,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<IEnumerable<RedisValue>> SortedSetRangeByRankAsync(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.SortedSetRangeByRankAsync(redisKey);
+            return await db.SortedSetRangeByRankAsync(redisKey);
         }
         /// <summary>
         /// 返回有序集合的元素个数
@@ -900,7 +1017,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<long> SortedSetLengthAsync(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.SortedSetLengthAsync(redisKey);
+            return await db.SortedSetLengthAsync(redisKey);
         }
         /// <summary>
         /// 返回有序集合的元素个数
@@ -910,7 +1027,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<bool> SortedSetRemoveAsync(string redisKey, string member) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.SortedSetRemoveAsync(redisKey, member);
+            return await db.SortedSetRemoveAsync(redisKey, member);
         }
         /// <summary>
         /// SortedSet 新增
@@ -923,7 +1040,7 @@ namespace ComClassLib.DB {
         public async Task<bool> SortedSetAddAsync<T>(string redisKey, T member, double score) {
             redisKey = AddKeyPrefix(redisKey);
             var json = Serialize(member);
-            return await _db.SortedSetAddAsync(redisKey, json, score);
+            return await db.SortedSetAddAsync(redisKey, json, score);
         }
         #endregion SortedSet-Async
 
@@ -936,8 +1053,25 @@ namespace ComClassLib.DB {
         /// <param name="redisKey"></param>
         /// <returns></returns>
         public bool KeyDelete(string redisKey) {
-            redisKey = AddKeyPrefix(redisKey);
-            return _db.KeyDelete(redisKey);
+
+
+
+            bool res = false;
+            try {
+                if (DbConnect()) {
+                    redisKey = AddKeyPrefix(redisKey);
+
+                    res = db.KeyDelete(redisKey);
+                }
+
+            } catch {
+                res = false;
+                IsDbConnect = false;
+            }
+
+            return res;
+
+
         }
         /// <summary>
         /// 删除指定key
@@ -946,7 +1080,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public long KeyDelete(IEnumerable<string> redisKeys) {
             var keys = redisKeys.Select(x => (RedisKey)AddKeyPrefix(x));
-            return _db.KeyDelete(keys.ToArray());
+            return db.KeyDelete(keys.ToArray());
         }
         /// <summary>
         /// 检验key是否存在
@@ -955,7 +1089,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public bool KeyExists(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.KeyExists(redisKey);
+            return db.KeyExists(redisKey);
         }
         /// <summary>
         /// 重命名key
@@ -965,7 +1099,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public bool KeyReName(string oldKeyName, string newKeyName) {
             oldKeyName = AddKeyPrefix(oldKeyName);
-            return _db.KeyRename(oldKeyName, newKeyName);
+            return db.KeyRename(oldKeyName, newKeyName);
         }
         /// <summary>
         /// 设置key 的过期时间
@@ -975,7 +1109,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public bool KeyExpire(string redisKey, TimeSpan? expired = null) {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.KeyExpire(redisKey, expired);
+            return db.KeyExpire(redisKey, expired);
         }
 
         #region key-async
@@ -986,7 +1120,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<bool> KeyDeleteAsync(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.KeyDeleteAsync(redisKey);
+            return await db.KeyDeleteAsync(redisKey);
         }
         /// <summary>
         /// 删除指定的key
@@ -995,7 +1129,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<long> KeyDeleteAsync(IEnumerable<string> redisKeys) {
             var keys = redisKeys.Select(x => (RedisKey)AddKeyPrefix(x));
-            return await _db.KeyDeleteAsync(keys.ToArray());
+            return await db.KeyDeleteAsync(keys.ToArray());
         }
         /// <summary>
         /// 检验key 是否存在
@@ -1004,7 +1138,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<bool> KeyExistsAsync(string redisKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.KeyExistsAsync(redisKey);
+            return await db.KeyExistsAsync(redisKey);
         }
         /// <summary>
         /// 重命名key
@@ -1014,7 +1148,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<bool> KeyRenameAsync(string redisKey, string redisNewKey) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.KeyRenameAsync(redisKey, redisNewKey);
+            return await db.KeyRenameAsync(redisKey, redisNewKey);
         }
         /// <summary>
         /// 设置 key 时间
@@ -1024,7 +1158,7 @@ namespace ComClassLib.DB {
         /// <returns></returns>
         public async Task<bool> KeyExpireAsync(string redisKey, TimeSpan? expired) {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.KeyExpireAsync(redisKey, expired);
+            return await db.KeyExpireAsync(redisKey, expired);
         }
         #endregion key-async
 
@@ -1038,7 +1172,7 @@ namespace ComClassLib.DB {
         /// <param name="handle">事件</param>
         public void Subscribe(RedisChannel channel, Action<RedisChannel, RedisValue> handle) {
             //getSubscriber() 获取到指定服务器的发布者订阅者的连接
-            var sub = _connMultiplexer.GetSubscriber();
+            var sub = ConnMultiplexer.GetSubscriber();
             //订阅执行某些操作时改变了 优先/主动 节点广播
             sub.Subscribe(channel, handle);
         }
@@ -1049,7 +1183,7 @@ namespace ComClassLib.DB {
         /// <param name="message"></param>
         /// <returns></returns>
         public long Publish(RedisChannel channel, RedisValue message) {
-            var sub = _connMultiplexer.GetSubscriber();
+            var sub = ConnMultiplexer.GetSubscriber();
             return sub.Publish(channel, message);
         }
         /// <summary>
@@ -1060,7 +1194,7 @@ namespace ComClassLib.DB {
         /// <param name="message"></param>
         /// <returns></returns>
         public long Publish<T>(RedisChannel channel, T message) {
-            var sub = _connMultiplexer.GetSubscriber();
+            var sub = ConnMultiplexer.GetSubscriber();
             return sub.Publish(channel, Serialize(message));
         }
 
@@ -1072,7 +1206,7 @@ namespace ComClassLib.DB {
         /// <param name="handle"></param>
         /// <returns></returns>
         public async Task SubscribeAsync(RedisChannel redisChannel, Action<RedisChannel, RedisValue> handle) {
-            var sub = _connMultiplexer.GetSubscriber();
+            var sub = ConnMultiplexer.GetSubscriber();
             await sub.SubscribeAsync(redisChannel, handle);
         }
         /// <summary>
@@ -1082,7 +1216,7 @@ namespace ComClassLib.DB {
         /// <param name="message"></param>
         /// <returns></returns>
         public async Task<long> PublishAsync(RedisChannel redisChannel, RedisValue message) {
-            var sub = _connMultiplexer.GetSubscriber();
+            var sub = ConnMultiplexer.GetSubscriber();
             return await sub.PublishAsync(redisChannel, message);
         }
         /// <summary>
@@ -1093,7 +1227,7 @@ namespace ComClassLib.DB {
         /// <param name="message"></param>
         /// <returns></returns>
         public async Task<long> PublishAsync<T>(RedisChannel redisChannel, T message) {
-            var sub = _connMultiplexer.GetSubscriber();
+            var sub = ConnMultiplexer.GetSubscriber();
             return await sub.PublishAsync(redisChannel, Serialize(message));
         }
         #endregion 发布订阅-async
@@ -1105,13 +1239,13 @@ namespace ComClassLib.DB {
         /// 注册事件
         /// </summary>
         private static void RegisterEvent() {
-            _connMultiplexer.ConnectionRestored += ConnMultiplexer_ConnectionRestored;
-            _connMultiplexer.ConnectionFailed += ConnMultiplexer_ConnectionFailed;
-            _connMultiplexer.ErrorMessage += ConnMultiplexer_ErrorMessage;
-            _connMultiplexer.ConfigurationChanged += ConnMultiplexer_ConfigurationChanged;
-            _connMultiplexer.HashSlotMoved += ConnMultiplexer_HashSlotMoved;
-            _connMultiplexer.InternalError += ConnMultiplexer_InternalError;
-            _connMultiplexer.ConfigurationChangedBroadcast += ConnMultiplexer_ConfigurationChangedBroadcast;
+            ConnMultiplexer.ConnectionRestored += ConnMultiplexer_ConnectionRestored;
+            ConnMultiplexer.ConnectionFailed += ConnMultiplexer_ConnectionFailed;
+            ConnMultiplexer.ErrorMessage += ConnMultiplexer_ErrorMessage;
+            ConnMultiplexer.ConfigurationChanged += ConnMultiplexer_ConfigurationChanged;
+            ConnMultiplexer.HashSlotMoved += ConnMultiplexer_HashSlotMoved;
+            ConnMultiplexer.InternalError += ConnMultiplexer_InternalError;
+            ConnMultiplexer.ConfigurationChangedBroadcast += ConnMultiplexer_ConfigurationChangedBroadcast;
         }
         /// <summary>
         /// 重新配置广播时(主从同步更改)
@@ -1159,6 +1293,7 @@ namespace ComClassLib.DB {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private static void ConnMultiplexer_ConnectionFailed(object sender, ConnectionFailedEventArgs e) {
+            IsServConnect = false;
             Console.WriteLine($"{nameof(ConnMultiplexer_ConnectionFailed)}: {e.Exception}");
         }
         /// <summary>

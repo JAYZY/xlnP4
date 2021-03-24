@@ -17,7 +17,7 @@ namespace PreCheckSys {
             Application.SetCompatibleTextRenderingDefault(false);
             Settings.Default.DbServIP = "192.168.100.58";
             //Settings.Default.DBPath = "F:\\天窗数据";
-            Settings.Default.Save();
+           // Settings.Default.Save();
             // Redis2Sqlite redis = new Redis2Sqlite(Settings.Default.ipAddr, "sdf");
             // Settings.Default.currDBIndex = 0;
             //Settings.Default.Save();

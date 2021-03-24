@@ -2,11 +2,14 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ComClassLib.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="DbServIP" Type="System.String" Scope="User">
+    <Setting Name="RedisServIP" Type="System.String" Scope="User">
       <Value Profile="(Default)">192.168.1.158</Value>
     </Setting>
-    <Setting Name="Port" Type="System.Int32" Scope="User">
+    <Setting Name="RedisPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">6379</Value>
+    </Setting>
+    <Setting Name="RedisDBTimeout" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

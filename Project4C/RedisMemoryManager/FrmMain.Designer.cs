@@ -41,19 +41,31 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lblCameraA = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblCameraD = new System.Windows.Forms.Label();
             this.lblCameraC = new System.Windows.Forms.Label();
             this.lblCameraB = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblDelImgNum = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.llblDataPath = new System.Windows.Forms.LinkLabel();
+            this.lblTaskInfo = new DevComponents.DotNetBar.LabelX();
             ((System.ComponentModel.ISupportInitialize)(this.iInputMaxMemory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iInputDelImgNum)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 19);
+            this.label1.Location = new System.Drawing.Point(34, 98);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(97, 14);
@@ -63,7 +75,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(328, 19);
+            this.label2.Location = new System.Drawing.Point(328, 98);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 14);
@@ -72,7 +84,7 @@
             // 
             // lblMemory
             // 
-            this.lblMemory.Location = new System.Drawing.Point(145, 19);
+            this.lblMemory.Location = new System.Drawing.Point(145, 98);
             this.lblMemory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMemory.Name = "lblMemory";
             this.lblMemory.Size = new System.Drawing.Size(175, 14);
@@ -81,7 +93,7 @@
             // 
             // lblReidsMemory
             // 
-            this.lblReidsMemory.Location = new System.Drawing.Point(439, 19);
+            this.lblReidsMemory.Location = new System.Drawing.Point(439, 98);
             this.lblReidsMemory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblReidsMemory.Name = "lblReidsMemory";
             this.lblReidsMemory.Size = new System.Drawing.Size(119, 14);
@@ -91,7 +103,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(35, 56);
+            this.label5.Location = new System.Drawing.Point(34, 123);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(187, 14);
@@ -100,7 +112,7 @@
             // 
             // btnSetMemLimit
             // 
-            this.btnSetMemLimit.Location = new System.Drawing.Point(340, 51);
+            this.btnSetMemLimit.Location = new System.Drawing.Point(339, 118);
             this.btnSetMemLimit.Name = "btnSetMemLimit";
             this.btnSetMemLimit.Size = new System.Drawing.Size(55, 23);
             this.btnSetMemLimit.TabIndex = 2;
@@ -115,7 +127,7 @@
             // 
             this.iInputMaxMemory.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.iInputMaxMemory.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.iInputMaxMemory.Location = new System.Drawing.Point(220, 52);
+            this.iInputMaxMemory.Location = new System.Drawing.Point(219, 119);
             this.iInputMaxMemory.MinValue = 1024;
             this.iInputMaxMemory.Name = "iInputMaxMemory";
             this.iInputMaxMemory.ShowUpDown = true;
@@ -126,7 +138,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(308, 56);
+            this.label3.Location = new System.Drawing.Point(307, 123);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(28, 14);
@@ -140,17 +152,17 @@
             // 
             this.rTxtBoxInfo.BackgroundStyle.Class = "RichTextBoxBorder";
             this.rTxtBoxInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.rTxtBoxInfo.Location = new System.Drawing.Point(37, 157);
+            this.rTxtBoxInfo.Location = new System.Drawing.Point(37, 219);
             this.rTxtBoxInfo.Name = "rTxtBoxInfo";
             this.rTxtBoxInfo.Rtf = "{\\rtf1\\ansi\\ansicpg936\\deff0\\deflang1033\\deflangfe2052{\\fonttbl{\\f0\\fnil\\fcharset" +
     "134 \\\'b5\\\'c8\\\'cf\\\'df;}}\r\n\\viewkind4\\uc1\\pard\\lang2052\\b\\f0\\fs21\\par\r\n}\r\n";
-            this.rTxtBoxInfo.Size = new System.Drawing.Size(581, 174);
+            this.rTxtBoxInfo.Size = new System.Drawing.Size(581, 194);
             this.rTxtBoxInfo.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(400, 55);
+            this.label4.Location = new System.Drawing.Point(399, 122);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 14);
@@ -165,7 +177,7 @@
             this.iInputDelImgNum.BackgroundStyle.Class = "DateTimeInputBackground";
             this.iInputDelImgNum.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.iInputDelImgNum.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.iInputDelImgNum.Location = new System.Drawing.Point(510, 51);
+            this.iInputDelImgNum.Location = new System.Drawing.Point(509, 118);
             this.iInputDelImgNum.MinValue = 50;
             this.iInputDelImgNum.Name = "iInputDelImgNum";
             this.iInputDelImgNum.ShowUpDown = true;
@@ -176,7 +188,7 @@
             // 
             // btnDelNumByOnce
             // 
-            this.btnDelNumByOnce.Location = new System.Drawing.Point(581, 50);
+            this.btnDelNumByOnce.Location = new System.Drawing.Point(580, 117);
             this.btnDelNumByOnce.Name = "btnDelNumByOnce";
             this.btnDelNumByOnce.Size = new System.Drawing.Size(55, 23);
             this.btnDelNumByOnce.TabIndex = 2;
@@ -188,7 +200,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.Maroon;
-            this.label6.Location = new System.Drawing.Point(17, 24);
+            this.label6.Location = new System.Drawing.Point(8, 24);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 14);
@@ -199,7 +211,7 @@
             // 
             this.lblCameraA.AutoSize = true;
             this.lblCameraA.ForeColor = System.Drawing.Color.Maroon;
-            this.lblCameraA.Location = new System.Drawing.Point(79, 24);
+            this.lblCameraA.Location = new System.Drawing.Point(65, 24);
             this.lblCameraA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCameraA.Name = "lblCameraA";
             this.lblCameraA.Size = new System.Drawing.Size(15, 14);
@@ -208,24 +220,41 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblCameraD);
             this.groupBox1.Controls.Add(this.lblCameraC);
             this.groupBox1.Controls.Add(this.lblCameraB);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.lblDelImgNum);
             this.groupBox1.Controls.Add(this.lblCameraA);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(37, 80);
+            this.groupBox1.Location = new System.Drawing.Point(36, 147);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(581, 51);
+            this.groupBox1.Size = new System.Drawing.Size(581, 68);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Redis中存储图像数量";
+            // 
+            // lblCameraD
+            // 
+            this.lblCameraD.AutoSize = true;
+            this.lblCameraD.ForeColor = System.Drawing.Color.Maroon;
+            this.lblCameraD.Location = new System.Drawing.Point(530, 24);
+            this.lblCameraD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCameraD.Name = "lblCameraD";
+            this.lblCameraD.Size = new System.Drawing.Size(15, 14);
+            this.lblCameraD.TabIndex = 0;
+            this.lblCameraD.Text = "0";
             // 
             // lblCameraC
             // 
             this.lblCameraC.AutoSize = true;
             this.lblCameraC.ForeColor = System.Drawing.Color.Maroon;
-            this.lblCameraC.Location = new System.Drawing.Point(492, 24);
+            this.lblCameraC.Location = new System.Drawing.Point(375, 24);
             this.lblCameraC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCameraC.Name = "lblCameraC";
             this.lblCameraC.Size = new System.Drawing.Size(15, 14);
@@ -236,18 +265,29 @@
             // 
             this.lblCameraB.AutoSize = true;
             this.lblCameraB.ForeColor = System.Drawing.Color.Maroon;
-            this.lblCameraB.Location = new System.Drawing.Point(267, 24);
+            this.lblCameraB.Location = new System.Drawing.Point(219, 24);
             this.lblCameraB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCameraB.Name = "lblCameraB";
             this.lblCameraB.Size = new System.Drawing.Size(15, 14);
             this.lblCameraB.TabIndex = 0;
             this.lblCameraB.Text = "0";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Maroon;
+            this.label7.Location = new System.Drawing.Point(476, 24);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 14);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "相机四：";
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.Maroon;
-            this.label10.Location = new System.Drawing.Point(430, 24);
+            this.label10.Location = new System.Drawing.Point(320, 24);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(63, 14);
@@ -258,18 +298,124 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.Maroon;
-            this.label8.Location = new System.Drawing.Point(205, 24);
+            this.label8.Location = new System.Drawing.Point(164, 24);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(63, 14);
             this.label8.TabIndex = 0;
             this.label8.Text = "相机二：";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.label9.Location = new System.Drawing.Point(8, 51);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(133, 14);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "删除的总图像数量：";
+            // 
+            // lblDelImgNum
+            // 
+            this.lblDelImgNum.AutoSize = true;
+            this.lblDelImgNum.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.lblDelImgNum.Location = new System.Drawing.Point(140, 51);
+            this.lblDelImgNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDelImgNum.Name = "lblDelImgNum";
+            this.lblDelImgNum.Size = new System.Drawing.Size(15, 14);
+            this.lblDelImgNum.TabIndex = 0;
+            this.lblDelImgNum.Text = "0";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.label11.Location = new System.Drawing.Point(320, 51);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(119, 14);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "存储总图像数量：";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.label12.Location = new System.Drawing.Point(452, 51);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(15, 14);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "0";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(643, 120);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(82, 18);
+            this.checkBox1.TabIndex = 6;
+            this.checkBox1.Text = "存储数据";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.llblDataPath);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Location = new System.Drawing.Point(623, 147);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(228, 68);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "数据存储参数";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(83, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "存储路径";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnDelNumByOnce_Click);
+            // 
+            // llblDataPath
+            // 
+            this.llblDataPath.AutoSize = true;
+            this.llblDataPath.Location = new System.Drawing.Point(95, 24);
+            this.llblDataPath.Name = "llblDataPath";
+            this.llblDataPath.Size = new System.Drawing.Size(71, 14);
+            this.llblDataPath.TabIndex = 3;
+            this.llblDataPath.TabStop = true;
+            this.llblDataPath.Text = "linkLabel1";
+            // 
+            // lblTaskInfo
+            // 
+            this.lblTaskInfo.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.lblTaskInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblTaskInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblTaskInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTaskInfo.ForeColor = System.Drawing.Color.ForestGreen;
+            this.lblTaskInfo.Location = new System.Drawing.Point(0, 0);
+            this.lblTaskInfo.Name = "lblTaskInfo";
+            this.lblTaskInfo.PaddingTop = 50;
+            this.lblTaskInfo.Size = new System.Drawing.Size(959, 95);
+            this.lblTaskInfo.TabIndex = 32;
+            this.lblTaskInfo.Text = "_ _ _  _ _  _ _ _-_ _ _";
+            this.lblTaskInfo.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(649, 342);
+            this.ClientSize = new System.Drawing.Size(959, 425);
+            this.Controls.Add(this.lblTaskInfo);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.rTxtBoxInfo);
             this.Controls.Add(this.iInputDelImgNum);
@@ -292,6 +438,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.iInputDelImgNum)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -319,5 +467,16 @@
         private System.Windows.Forms.Label lblCameraB;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblCameraD;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblDelImgNum;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.LinkLabel llblDataPath;
+        private DevComponents.DotNetBar.LabelX lblTaskInfo;
     }
 }

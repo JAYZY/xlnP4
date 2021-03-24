@@ -213,30 +213,28 @@ namespace PreCheckSys.core {
         /// 2.创建新分库        
         /// </summary>
         public SqliteHelper CreateSubDB() {
-
+            return null;
             //若存在当前分库，则结束当前分库
-            if (CurrSubDb != null) {
-                //string sBackCurrFullName = Path.Combine(_taskBackDir, Path.GetFileName(CurrSubDb.DbFullName));
-                CallInfo?.Invoke($"{taskMsg.Msg}:结束当前图像库!");
-                CurrSubDb.CloseDb();
-                if (HasBackDir) {
+            //if (CurrSubDb != null) {
+            //    //string sBackCurrFullName = Path.Combine(_taskBackDir, Path.GetFileName(CurrSubDb.DbFullName));
+            //    CallInfo?.Invoke($"{taskMsg.Msg}:结束当前图像库!");
+            //    CurrSubDb.CloseDb();
+            //    if (HasBackDir) {
 
-                    CurrSubDb.Dispose();
-                    //存在备份，将其拷贝到备份盘  注意：分表数据库文件名。[ 线路信息_行别.s1 ]
-                    CallInfo?.Invoke($"{taskMsg.Msg}:后台备份当前图像库......");
-                    string s1 = CurDbFileFullName, s2 = CurDbBackFileFullName;
-                    var copyTask = new Task(() => FileHelper.FileCopy(s1, s2, true));
-                    copyTask.Start();
-                }
-                ++IcurrDbInd;
-            }
+            //        CurrSubDb.Dispose();
+            //        //存在备份，将其拷贝到备份盘  注意：分表数据库文件名。[ 线路信息_行别.s1 ]
+            //        CallInfo?.Invoke($"{taskMsg.Msg}:后台备份当前图像库......");
+            //        string s1 = CurDbFileFullName, s2 = CurDbBackFileFullName;
+            //        var copyTask = new Task(() => FileHelper.FileCopy(s1, s2, true));
+            //        copyTask.Start();
+            //    }
+            //    ++IcurrDbInd;
+            //}
+            //// string newCurSubDbFullName = Path.Combine(_taskDir, $"{TaskName}.s{IcurrDbInd}");
+            //CurrSubDb = DBM.CreateCurrentDB(CurDbFileFullName);
 
-
-            // string newCurSubDbFullName = Path.Combine(_taskDir, $"{TaskName}.s{IcurrDbInd}");
-            CurrSubDb = DBM.CreateCurrentDB(CurDbFileFullName);
-
-            CallInfo?.Invoke($"{ taskMsg.Msg}:图像库-{IcurrDbInd}-开启成功！");
-            return CurrSubDb;
+            //CallInfo?.Invoke($"{ taskMsg.Msg}:图像库-{IcurrDbInd}-开启成功！");
+            //return CurrSubDb;
         }
 
         //任务开启

@@ -177,6 +177,7 @@ namespace PreCheckSys.DB {
             getImgInd = getFaultInd = 0;
             try {
                 while (ExecProc) {
+
                     string[] keys = imgInfoDB.ListRange("list", getImgInd, getImgInd + ISaveImgNumByOnce);
                     Console.WriteLine($"读取图像数据：[{keys.Length}]");
                     if (keys == null || keys.Length == 0) {

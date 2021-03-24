@@ -23,10 +23,11 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             DevComponents.DotNetBar.StyleManager styleManager1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmParent));
-            this.AppCommandTheme = new DevComponents.DotNetBar.Command();
-            this.RibbonStateCommand = new DevComponents.DotNetBar.Command();
+            this.AppCommandTheme = new DevComponents.DotNetBar.Command(this.components);
+            this.RibbonStateCommand = new DevComponents.DotNetBar.Command(this.components);
             this.ribbonControl1 = new DevComponents.DotNetBar.RibbonControl();
             this.ribbonPanel1 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribBar_AchiMgr = new DevComponents.DotNetBar.RibbonBar();
@@ -76,7 +77,7 @@
             this.buttonItem17 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonStyleCustom = new DevComponents.DotNetBar.ColorPickerDropDown();
             this.switchButtonItem1 = new DevComponents.DotNetBar.SwitchButtonItem();
-            styleManager1 = new DevComponents.DotNetBar.StyleManager();
+            styleManager1 = new DevComponents.DotNetBar.StyleManager(this.components);
             this.ribbonControl1.SuspendLayout();
             this.ribbonPanel1.SuspendLayout();
             this.ribbonPanel2.SuspendLayout();
@@ -84,8 +85,8 @@
             // 
             // styleManager1
             // 
-            styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2010Blue;
-            styleManager1.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))));
+            styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2007Blue;
+            styleManager1.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255))))), System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199))))));
             // 
             // AppCommandTheme
             // 
@@ -107,13 +108,12 @@
             // 
             this.ribbonControl1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonControl1.CaptionVisible = true;
-            this.ribbonControl1.Controls.Add(this.ribbonPanel1);
             this.ribbonControl1.Controls.Add(this.ribbonPanel2);
+            this.ribbonControl1.Controls.Add(this.ribbonPanel1);
             this.ribbonControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.ribbonControl1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.ribbonControl1.ForeColor = System.Drawing.Color.White;
             this.ribbonControl1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.applicationButton1,
             this.ribbonTabItem2,
             this.ribbonTabItem1,
             this.lblTaskInfo,
@@ -123,6 +123,8 @@
             this.ribbonControl1.Location = new System.Drawing.Point(5, 1);
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.ribbonControl1.QuickToolbarItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.applicationButton1});
             this.ribbonControl1.RibbonStripFont = new System.Drawing.Font("Segoe UI", 9F);
             this.ribbonControl1.Size = new System.Drawing.Size(958, 129);
             this.ribbonControl1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -151,10 +153,10 @@
             this.ribbonPanel1.Controls.Add(this.ribBar_AchiMgr);
             this.ribbonPanel1.Controls.Add(this.ribBar_SysMgr);
             this.ribbonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel1.Location = new System.Drawing.Point(0, 53);
+            this.ribbonPanel1.Location = new System.Drawing.Point(0, 56);
             this.ribbonPanel1.Name = "ribbonPanel1";
             this.ribbonPanel1.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel1.Size = new System.Drawing.Size(958, 73);
+            this.ribbonPanel1.Size = new System.Drawing.Size(958, 70);
             // 
             // 
             // 
@@ -168,6 +170,7 @@
             // 
             this.ribbonPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel1.TabIndex = 1;
+            this.ribbonPanel1.Visible = false;
             // 
             // ribBar_AchiMgr
             // 
@@ -188,7 +191,7 @@
             this.btnItem_ImportData});
             this.ribBar_AchiMgr.Location = new System.Drawing.Point(146, 0);
             this.ribBar_AchiMgr.Name = "ribBar_AchiMgr";
-            this.ribBar_AchiMgr.Size = new System.Drawing.Size(153, 70);
+            this.ribBar_AchiMgr.Size = new System.Drawing.Size(153, 67);
             this.ribBar_AchiMgr.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribBar_AchiMgr.TabIndex = 3;
             this.ribBar_AchiMgr.Text = "设置";
@@ -241,7 +244,7 @@
             this.btnIterm_TaskM});
             this.ribBar_SysMgr.Location = new System.Drawing.Point(3, 0);
             this.ribBar_SysMgr.Name = "ribBar_SysMgr";
-            this.ribBar_SysMgr.Size = new System.Drawing.Size(143, 70);
+            this.ribBar_SysMgr.Size = new System.Drawing.Size(143, 67);
             this.ribBar_SysMgr.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribBar_SysMgr.TabIndex = 9;
             this.ribBar_SysMgr.Text = "系统";
@@ -280,10 +283,10 @@
             this.ribbonPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonPanel2.Controls.Add(this.ribbonBar1);
             this.ribbonPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel2.Location = new System.Drawing.Point(0, 53);
+            this.ribbonPanel2.Location = new System.Drawing.Point(0, 56);
             this.ribbonPanel2.Name = "ribbonPanel2";
             this.ribbonPanel2.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanel2.Size = new System.Drawing.Size(958, 73);
+            this.ribbonPanel2.Size = new System.Drawing.Size(958, 70);
             // 
             // 
             // 
@@ -297,7 +300,6 @@
             // 
             this.ribbonPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel2.TabIndex = 2;
-            this.ribbonPanel2.Visible = false;
             // 
             // ribbonBar1
             // 
@@ -318,7 +320,7 @@
             this.btnIterm_PWDChange});
             this.ribbonBar1.Location = new System.Drawing.Point(3, 0);
             this.ribbonBar1.Name = "ribbonBar1";
-            this.ribbonBar1.Size = new System.Drawing.Size(127, 70);
+            this.ribbonBar1.Size = new System.Drawing.Size(127, 67);
             this.ribbonBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar1.TabIndex = 7;
             this.ribbonBar1.Text = "登录";
@@ -358,9 +360,8 @@
             this.applicationButton1.CanCustomize = false;
             this.applicationButton1.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.Image;
             this.applicationButton1.Image = ((System.Drawing.Image)(resources.GetObject("applicationButton1.Image")));
-            this.applicationButton1.ImageFixedSize = new System.Drawing.Size(16, 16);
-            this.applicationButton1.ImagePaddingHorizontal = 0;
-            this.applicationButton1.ImagePaddingVertical = 0;
+            this.applicationButton1.ImagePaddingHorizontal = 2;
+            this.applicationButton1.ImagePaddingVertical = 2;
             this.applicationButton1.Name = "applicationButton1";
             this.applicationButton1.ShowSubItems = false;
             this.applicationButton1.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -557,13 +558,13 @@
             // 
             // ribbonTabItem2
             // 
+            this.ribbonTabItem2.Checked = true;
             this.ribbonTabItem2.Name = "ribbonTabItem2";
             this.ribbonTabItem2.Panel = this.ribbonPanel2;
             this.ribbonTabItem2.Text = "系统-登录";
             // 
             // ribbonTabItem1
             // 
-            this.ribbonTabItem1.Checked = true;
             this.ribbonTabItem1.Name = "ribbonTabItem1";
             this.ribbonTabItem1.Panel = this.ribbonPanel1;
             this.ribbonTabItem1.Text = "功能模块";
